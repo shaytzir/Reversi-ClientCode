@@ -1,0 +1,19 @@
+ReadMe
+
+As we reviewed each other's code we decided to combine both of our works into one:
+*Shay's class "disk" was unnecessary as it only  contained a char representing a player's sign so we prefered Yuval's "Cell" which is a struct, containing char - sign of a player, its position (two ints) and a vector of "flipping points" (point to flip in the future if a player choose this cell as his move). using a struct was easier and more efficent.
+
+*now board is a matrix of chars and not of "disks", we can check easily which sign is stored in a place in the matrix without unnecessary request from a disk.
+
+*In order for Cell to hold vector of points, we used Yuval class "Point" which is a struct holding two ints - x and y
+
+*we prefered using Shay implementation of seperating the game logic (ReversiRules) from the gameflow, in order to allow future changes as the game logic might be replaced/changed.
+
+*instead of calling from a lot of function to the function "movesForCurrentPlayer" which return a vector of options to a player, we chose to hold a memeber called "moves for current player" which will be updated in every turn (more efficent)
+
+
+*In each turn we  print the score to track the game is working alright.
+
+* out implementations of Console, Player, HumanP and Visualization were similar (just had diffrent names) so we kept them.
+
+

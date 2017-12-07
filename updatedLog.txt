@@ -1,0 +1,144 @@
+d0b9a45 - shaytzir,4 minutes ago : updated comments on classes + new Test for AIPlayer
+a350560 - shaytzir,2 hours ago : changed moveForCurentPlayer to hold no duplicates + minor changes in the AIplayer way of choosing
+d1b1120 - yuval,19 hours ago : 28/11
+474f662 - yuval,19 hours ago : 28/11
+660396a - shaytzir,19 hours ago : Delete Board.h
+265f07f - shaytzir,19 hours ago : Delete Board.cpp
+7751c3b - shaytzir,19 hours ago : Delete Test_HumanP.cpp
+a6907cb - shaytzir,19 hours ago : Delete CMakeCCompilerId.c
+86d2913 - shaytzir,19 hours ago : Delete a.out
+a005d10 - shaytzir,19 hours ago : Delete CMakeCXXCompilerId.cpp
+ade070c - shaytzir,19 hours ago : Delete a.out
+48dd3a6 - shaytzir,19 hours ago : Delete CMakeCCompiler.cmake
+2b13b08 - shaytzir,19 hours ago : Delete CMakeCXXCompiler.cmake
+3bd51aa - shaytzir,19 hours ago : Delete CMakeDetermineCompilerABI_C.bin
+099d4d0 - shaytzir,19 hours ago : Delete CMakeDetermineCompilerABI_CXX.bin
+8595b1c - shaytzir,19 hours ago : Delete CMakeSystem.cmake
+2c2c04e - shaytzir,19 hours ago : Delete Test_Board.cpp.o
+2513f52 - shaytzir,19 hours ago : Delete Test_HumanP.cpp.o
+318e48d - shaytzir,19 hours ago : Delete Test_ReversiRules.cpp.o
+f531b6a - shaytzir,19 hours ago : Delete Console.cpp.o
+7a4e3a0 - shaytzir,19 hours ago : Delete AIPlayer.cpp.o
+65771d4 - shaytzir,19 hours ago : Delete Board.cpp.o
+35431ad - shaytzir,19 hours ago : Delete HumanP.cpp.o
+24a0d57 - shaytzir,19 hours ago : Delete GameFlow.cpp.o
+78b4796 - shaytzir,19 hours ago : Delete ReversiRules.cpp.o
+8fe9d08 - shaytzir,19 hours ago : Delete main.cpp.o
+97fb8b9 - shaytzir,19 hours ago : Delete build.make
+0042bae - shaytzir,19 hours ago : Delete DependInfo.cmake
+b7de011 - shaytzir,19 hours ago : Delete CXX.includecache
+b7dc081 - shaytzir,19 hours ago : Delete depend.make
+0b92180 - shaytzir,19 hours ago : Delete cmake_clean.cmake
+1407c32 - shaytzir,19 hours ago : Delete depend.internal
+cc118ec - shaytzir,19 hours ago : Delete flags.make
+5cf3bed - shaytzir,19 hours ago : Delete gtest_main.cpp.o
+301bdd3 - shaytzir,19 hours ago : Delete link.txt
+1d0be04 - shaytzir,19 hours ago : Delete progress.make
+d73cab4 - shaytzir,19 hours ago : Delete TargetDirectories.txt
+1728891 - shaytzir,19 hours ago : Delete Makefile2
+55c978e - shaytzir,19 hours ago : Delete Makefile.cmake
+333338b - shaytzir,19 hours ago : Delete CMakeDirectoryInformation.cmake
+b9f2999 - shaytzir,19 hours ago : Delete CMakeOutput.log
+d0c2d33 - shaytzir,19 hours ago : Delete CMakeError.log
+d4d7ab8 - shaytzir,19 hours ago : Delete clion-environment.txt
+4c2aae5 - shaytzir,19 hours ago : Delete clion-log.txt
+25e2a1f - shaytzir,19 hours ago : Delete cmake.check_cache
+ce1d201 - shaytzir,19 hours ago : Delete feature_tests.bin
+429a2c5 - shaytzir,19 hours ago : Delete feature_tests.c
+60cb6b9 - shaytzir,19 hours ago : Delete feature_tests.cxx
+9645c97 - shaytzir,19 hours ago : Delete progress.marks
+d368f1b - shaytzir,19 hours ago : Delete CMakeDirectoryInformation.cmake
+ab0af09 - shaytzir,19 hours ago : Delete progress.marks
+2a9e372 - shaytzir,19 hours ago : Delete DependInfo.cmake
+3ec9333 - shaytzir,19 hours ago : Delete build.make
+3678c1f - shaytzir,19 hours ago : Delete cmake_clean.cmake
+805d1fd - shaytzir,19 hours ago : Delete cmake_clean_target.cmake
+cd154fa - shaytzir,19 hours ago : Delete depend.make
+1cac1cd - shaytzir,19 hours ago : Delete flags.make
+420b51a - shaytzir,19 hours ago : Delete link.txt
+cd8930b - shaytzir,19 hours ago : Delete progress.make
+757db74 - shaytzir,19 hours ago : Delete depend.make
+57b2249 - shaytzir,19 hours ago : Delete flags.make
+a7ad9a2 - shaytzir,19 hours ago : Delete link.txt
+eeab2ec - shaytzir,19 hours ago : Delete progress.make
+374d5f2 - shaytzir,19 hours ago : Delete cmake_clean.cmake
+7423f22 - shaytzir,19 hours ago : Delete build.make
+5513c4d - shaytzir,19 hours ago : Delete DependInfo.cmake
+39de907 - shaytzir,19 hours ago : Delete cmake_clean_target.cmake
+c7b9ee7 - shaytzir,19 hours ago : Delete CMakeDirectoryInformation.cmake
+577580b - shaytzir,19 hours ago : Delete progress.marks
+6ba3944 - shaytzir,19 hours ago : Delete gtest-all.cc.o
+dd493ad - shaytzir,19 hours ago : Delete CXX.includecache
+3605e7a - shaytzir,19 hours ago : Delete DependInfo.cmake
+834ab03 - shaytzir,19 hours ago : Delete build.make
+20540fd - shaytzir,19 hours ago : Delete cmake_clean.cmake
+c90f816 - shaytzir,19 hours ago : Delete cmake_clean_target.cmake
+43e36a1 - shaytzir,19 hours ago : Delete depend.internal
+af59d0c - shaytzir,19 hours ago : Delete depend.make
+6e2fcf4 - shaytzir,19 hours ago : Delete flags.make
+cc6e8b4 - shaytzir,19 hours ago : Delete link.txt
+7a46f50 - shaytzir,19 hours ago : Delete progress.make
+f49b9e3 - shaytzir,19 hours ago : Delete gtest_main.cc.o
+12338f8 - shaytzir,19 hours ago : Delete CXX.includecache
+6ce1baf - shaytzir,19 hours ago : Delete DependInfo.cmake
+8dc4bc2 - shaytzir,19 hours ago : Delete build.make
+d1843a1 - shaytzir,19 hours ago : Delete cmake_clean_target.cmake
+3379acc - shaytzir,19 hours ago : Delete cmake_clean.cmake
+2e37dc6 - shaytzir,19 hours ago : Delete depend.internal
+3337f59 - shaytzir,19 hours ago : Delete depend.make
+0a0d1a7 - shaytzir,19 hours ago : Delete flags.make
+fd48a4b - shaytzir,19 hours ago : Delete link.txt
+fe03245 - shaytzir,19 hours ago : Delete progress.make
+2658006 - shaytzir,19 hours ago : Delete CMakeDirectoryInformation.cmake
+31a4d7d - shaytzir,19 hours ago : Delete progress.marks
+f50ee35 - shaytzir,19 hours ago : Delete CTestTestfile.cmake
+48128a7 - shaytzir,19 hours ago : Delete Makefile
+28dfd91 - shaytzir,19 hours ago : Delete cmake_install.cmake
+a8608f9 - shaytzir,19 hours ago : Delete gtest.cbp
+1180cd6 - shaytzir,19 hours ago : Delete libgtest_maind.a
+90da3cd - shaytzir,19 hours ago : Delete libgtestd.a
+6a38ef7 - shaytzir,19 hours ago : Delete CTestTestfile.cmake
+b52b811 - shaytzir,20 hours ago : Delete Makefile
+9ed3713 - shaytzir,20 hours ago : Delete cmake_install.cmake
+1243b4c - shaytzir,20 hours ago : Delete gmock.cbp
+70dd325 - shaytzir,20 hours ago : Delete CTestTestfile.cmake
+686f324 - shaytzir,20 hours ago : Delete Makefile
+32903a6 - shaytzir,20 hours ago : Delete cmake_install.cmake
+e9da8f5 - shaytzir,20 hours ago : Delete googletest-distribution.cbp
+927a7ac - shaytzir,20 hours ago : Delete CMakeCache.txt
+16d024c - shaytzir,20 hours ago : Delete Ex2
+25b2f07 - shaytzir,20 hours ago : Delete Ex2.cbp
+77fcf67 - shaytzir,20 hours ago : Delete Makefile
+51a7ee8 - shaytzir,20 hours ago : Delete cmake_install.cmake
+2de05d8 - shaytzir,20 hours ago : Delete gmock.pc
+a55b3d8 - shaytzir,20 hours ago : Delete gmock_main.pc
+b05881a - shaytzir,20 hours ago : Delete gtest.pc
+34849e7 - shaytzir,20 hours ago : Delete gtest_main.pc
+b490a05 - shaytzir,20 hours ago : Delete workspace.xml
+77928be - shaytzir,20 hours ago : Delete .name
+b49295e - yuval,20 hours ago : 28/11 added coments to all functions
+65fa911 - yuval,20 hours ago : 28/11 added coments to all functions
+d3334d5 - shaytzir,20 hours ago : Merge branch 'master' of https://github.com/shaytzir/Ex2-shay
+c86654f - shaytzir,20 hours ago : edited tests and Board's constructor
+c0cff65 - yuval,20 hours ago : Merge remote-tracking branch 'origin/master'
+7482aca - yuval,20 hours ago : 28/11 added coments to all functions
+5cf2312 - shaytzir,21 hours ago : updated tets
+c912b5c - shaytzir,22 hours ago : updated tests
+0f0afc4 - yuval,22 hours ago : 26/11
+271eca0 - shaytzir,22 hours ago : Merge remote-tracking branch 'origin/master'
+bd20e96 - shaytzir,22 hours ago : updated tests and cmake
+04eda44 - yuval,22 hours ago : 26/11
+aba0672 - yuval,2 days ago : 26/11
+af6dba1 - shaytzir,3 days ago : fixed getMovedForOneDisk and uploaded updated cmakelists
+679a675 - shaytzir,3 days ago : saving cmake to not be overwritten
+ea97f68 - yuval,4 days ago : 26/11
+ec023ce - yuval,4 days ago : 25/11
+7373795 - shaytzir,5 days ago : start of unit tests
+1e099bf - shaytzir,5 days ago : Merge branch 'master' of https://github.com/shaytzir/Ex2-shay
+6695e70 - shaytzir,5 days ago : start of tests: board, reversiRules
+54fe7da - shaytzir,6 days ago : 23/11 new
+f62bdee - yuval,6 days ago : 23/11
+c5f01c2 - Yuval,6 days ago : 23/11
+3969fab - shaytzir,7 days ago : Deleted previous code comments and changed Functions names in ReversiRules to be clear
+bcfb2d9 - shaytzir,10 days ago : 19.11
+d95de97 - shaytzir,10 days ago : Initial commit
