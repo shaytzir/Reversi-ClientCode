@@ -54,7 +54,7 @@ int main() {
     //runs the game
     game.run();
     delete player1;
-    delete player1;
+    delete player2;
     delete screen;
     return 0;
 }

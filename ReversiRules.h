@@ -70,6 +70,10 @@ public:
      * Checks witch player has more points and sends the information to screen.
      */
     void whoWon();
+    /**
+     * making "now" player to be the next one.
+     */
+    void switchPlayers();
 private:
     Board* board_;
     GeneralPlayer* whiteP_;

@@ -204,3 +204,16 @@ void HumanP::printMyOptions(Visualization *screen, vector<cell_t> myoptions) con
     screen->printOptions(this->getSign(), myoptions);
 
 }
+
+/**
+ * passes the turn to te other player
+ */
+void HumanP::passTurn() {
+    string key;
+    cin >> key;
+}
+
+void HumanP::noMovesForMe(Visualization *screen) {
+    screen->printNoMoreMoves(this->getSign());
+
+}

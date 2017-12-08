@@ -14,7 +14,7 @@
  * @param screen a screen to show the game on
  */
 ReversiRules::ReversiRules(GeneralPlayer* black, GeneralPlayer* white, Visualization* screen) {
-    this->board_ = new Board(8, 8, black->getSign(), white->getSign());
+    this->board_ = new Board(4, 4, black->getSign(), white->getSign());
     this->whiteP_ = white;
     this->blackP_ = black;
     now_ = blackP_;
@@ -36,21 +36,22 @@ void ReversiRules::nextTurn() {
     int row = 0, col = 0;
     string choice, key;
     this->screen_->printOut(this->board_);
-
-    this->screen_->printScore(blackP_->getSign(), blackP_->getScore(), whiteP_->getSign(),whiteP_->getScore());
+    this->screen_->printScore(blackP_->getSign(), blackP_->getScore(),
+                              whiteP_->getSign(),whiteP_->getScore());
     //if the current player has no optional moves
     // he presses any key and the turn goes for the other player
     if (this->movesForCurrentPlayer.size() == 0) {
-        this->screen_->printNoMoreMoves(now_->getSign());
-        cin >> key;
-        //switching between players
-        GeneralPlayer* temp = now_;
-        now_ = later_;
-        later_ = temp;
+        //notify player he has no moves
+        this->now_->noMovesForMe(this->screen_);
+        this->now_->passTurn();
+        //switch between players and updated movesforcurrentplayer
+        this->movesForCurrentPlayer.clear();
+        switchPlayers();
+        this->movesForCurrentPlayer =
+                now_->getMovesForPlayer(this->board_, now_->getSign());
         return;
         //if he has moves, let him choose one of them
     } else {
-        //  this->screen_->printOptions(now_->getSign(), this->movesForCurrentPlayer);
         now_->printMyOptions(this->screen_, this->movesForCurrentPlayer);
         choice = this->now_->getNextMove(this->board_);
 
@@ -70,9 +71,7 @@ void ReversiRules::nextTurn() {
     flipFrom(row, col);
     this->movesForCurrentPlayer.clear();
     //switch between players
-    GeneralPlayer* temp = now_;
-    now_ = later_;
-    later_ = temp;
+    switchPlayers();
     this->movesForCurrentPlayer = now_->getMovesForPlayer(this->board_, now_->getSign());
 }
 /**
@@ -86,15 +85,12 @@ bool ReversiRules::gameover() {
     if (board_->fullBoard()) {
         return true;
     }
-    if ((movesForCurrentPlayer.size() == 0)) {
-        now_ = later_;
-        later_ = temp;
-        if (movesForCurrentPlayer.size() == 0) {
+
+    if (now_->getMovesForPlayer(this->board_, this->now_->getSign()).size() == 0) {
+        if (later_->getMovesForPlayer(this->board_, this->later_->getSign()).size() == 0) {
             return true;
         }
-        temp = later_;
-        later_ = now_;
-        now_ = temp;
+        // switchPlayers();
     }
     return false;
 }
@@ -182,5 +178,12 @@ void ReversiRules::whoWon() {
     }
     this->screen_->printScore(blackP_->getSign(), blackP_->getScore(), whiteP_->getSign(),whiteP_->getScore());
     this->screen_->printWinner(winner);
+
+}
+
+void ReversiRules::switchPlayers() {
+    GeneralPlayer* temp = now_;
+    this->now_ = later_;
+    later_ = temp;
 
 }

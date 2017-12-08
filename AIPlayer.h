@@ -51,8 +51,16 @@ public:
     */
     string getNextMove(Board* b) ;
 
+    /**
+     * passes the turn to te other player
+     */
+    void passTurn();
 
 
+    /**
+     * print there no moves for current player;
+     */
+    void noMovesForMe(Visualization* screen);
 
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
     void setSign() {};

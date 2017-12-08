@@ -40,9 +40,17 @@ public:
     /**
      * getNextMove.
      * @param b the board to check the next move in.
-     * @return the next move chioce.
-     */
+    **/
     virtual string getNextMove(Board* b) = 0;
+    /**
+     * passes the turn to the other player.
+     */
+    virtual void passTurn() = 0;
+
+    /**
+     * print there no moves for current player;
+     */
+    virtual void noMovesForMe(Visualization* screen) = 0;
     /**
      * getMovesForPlayer.
      * @param gameBoard the board to check on.

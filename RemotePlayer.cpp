@@ -3,6 +3,7 @@
 //
 
 #include <sstream>
+#include <cstring>
 #include "RemotePlayer.h"
 
 RemotePlayer::RemotePlayer(int playerSign, Client* c) {
@@ -188,6 +189,16 @@ vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point
 
 void RemotePlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
     cout << "waiting for the other player move..." << endl;
+}
+
+void RemotePlayer::passTurn() {
+    // string key;
+    // cin >> key;
+    string noMove = this->client->getChoice();
+}
+
+void RemotePlayer::noMovesForMe(Visualization *screen) {
+    // screen->printNoMoreMoves(this->getSign());
 }
 
 

@@ -277,3 +277,16 @@ void AIPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) c
     screen->printOptions(this->getSign(), myoptions);
 
 }
+
+/**
+ * passes the turn to te other player
+ */
+void AIPlayer::passTurn() {
+    string key;
+    cin >> key;
+}
+
+void AIPlayer::noMovesForMe(Visualization *screen) {
+    screen->printNoMoreMoves(this->getSign());
+
+}

@@ -50,8 +50,17 @@ public:
      * @return the optional moves.
      */
     vector<cell_t> getMovesForPlayer(Board* gameBoard, char sign) const ;
+    /**
+     * passes the turn to te other player
+     */
+    void passTurn();
 
-
+    /**
+     *
+     *
+     *  print there no moves for current player;
+     */
+    void noMovesForMe(Visualization* screen);
 
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
     void setSign() {};

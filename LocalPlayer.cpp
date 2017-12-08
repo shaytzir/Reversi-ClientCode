@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <cstring>
 #include "LocalPlayer.h"
 
 LocalPlayer::LocalPlayer(int sign, Client* c) {
@@ -197,6 +198,23 @@ string LocalPlayer::getNextMove(Board* b) {
 void LocalPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
     screen->printOptions(this->getSign(), myoptions);
 
+}
+/**
+ * passes the turn to te other player
+ */
+void LocalPlayer::passTurn() {
+    string key;
+    cin >> key;
+    string noMoves = "NoMove";
+    char* sendFinal = new char[noMoves.size() + 1];
+    strcpy(sendFinal, noMoves.c_str());
+    this->client->sendExercise(sendFinal);
+    delete sendFinal;
+
+}
+
+void LocalPlayer::noMovesForMe(Visualization *screen) {
+    screen->printNoMoreMoves(this->getSign());
 }
 
 

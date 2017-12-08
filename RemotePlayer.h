@@ -51,6 +51,18 @@ public:
      * @param myoptions list of options
      */
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
+
+    /**
+ * passes the turn to te other player
+ */
+    void passTurn();
+
+    /**
+     *
+     *
+     * print there no moves for current player;
+     */
+    void noMovesForMe(Visualization* screen);
     void setSign() {};
 private:
     /**
