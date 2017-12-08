@@ -15,6 +15,7 @@
 #include "Console.h"
 #include "Client.h"
 #include "RemotePlayer.h"
+#include "LocalPlayer.h"
 
 int main() {
     int num1, num2;
@@ -32,12 +33,16 @@ int main() {
         player1 = new HumanP('X');
         player2 = new AIPlayer('O');
     } else if (choice == 3) {
-        player1 = new Client("127.0.0.1", 8000);
+        Client* client = new Client("127.0.0.1", 8000);
         try {
-            player1->connectToServer();
-            player1->setSign();
-            char sign = player1->getSign();
-            player2 = new RemotePlayer(sign);
+            int sign = client->connectToServer();
+            player1 = new LocalPlayer(sign, client);
+            player2 = new RemotePlayer(sign, client);
+            if (sign == 2) {
+                GeneralPlayer* temp = player1;
+                player1 = player2;
+                player2 = temp;
+            }
         } catch (const char *msg) {
             cout << "Failed to connect to server. Reason:" << msg << endl;
             exit(-1);

@@ -7,44 +7,50 @@
 
 
 #include "GeneralPlayer.h"
+#include "Client.h"
 
 class RemotePlayer : public GeneralPlayer {
 public:
-    RemotePlayer(char playerSign);
+    RemotePlayer(int sign, Client* c);
     /**
     *
     * @param num number of disks to add to the player's score
     */
-    void scoreUp(int num) {};
+    void scoreUp(int num);
     /**
      * setter
      * @param num a number to reduce from this player score
      */
-    void scoreDown(int num){};
-/**
+    void scoreDown(int num);
+    /**
      * getter
      * @return the sign of this player
      */
-    char getSign() const{};
+    char getSign() const;
     /**
      * getter
      * @return the score of this player
      */
-    int getScore() const{};
+    int getScore() const;
     /**
     *getMovesForPlayer.
     * @param gameBoard the board to check on the possible moves.
     * @param sign the player sign.
     * @return the possible moves in vector of type cell.
     */
-    vector<cell_t> getMovesForPlayer(Board* gameBoard, char sign) const{};
+    vector<cell_t> getMovesForPlayer(Board* gameBoard, char sign) const;
     /**
     * getNextMove.
     * @param gameBoard the board that we need to check the player moves on it.
     * @return the AIPlayer best move to do.
     */
-    string getNextMove(Board* b) {};
-    void connectToServer() {};
+    string getNextMove(Board* b);
+    /**
+     * the remote player doesnt need to know his options, waiting for answer from the other client
+     * @param screen screen
+     * @param myoptions list of options
+     */
+    void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
     void setSign() {};
 private:
     /**
@@ -53,7 +59,7 @@ private:
     * @param gameBoard the board to check on the possible moves.
     * @return vector of type point of al this player discs on board.
     */
-    vector<point_t> getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const{};
+    vector<point_t> getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const ;
     /**
     *possibleMovesForOneDisk.
     * @param current sign of the current player.
@@ -61,14 +67,8 @@ private:
     * @param gameBoard the board to check on.
     * @return vector of cells that are possible moves of this player on the board.
     */
-    vector<cell_t> possibleMovesForOneDisk(char current, point_t point, Board* &gameBoard) const {};
-    /**
-    *setPlayerDisk.
-    * @param cell the locetion of the move that we check the score of the other player options.
-    * @param gameBoard the board to check on.
-    * @return the maximum score that the other player can get from after AIPlayer set his disc on this cell.
-    */
-    int setPlayerDisk(cell_t cell, Board* gameBoard) const ;
+    vector<cell_t> possibleMovesForOneDisk(char current, point_t point, Board* &gameBoard) const ;
+    Client* client;
 
 };
 

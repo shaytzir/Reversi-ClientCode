@@ -41,7 +41,7 @@ public:
     * @param player2 the second player.
     * Print the current scores of the players.
     */
-    virtual void printScore(GeneralPlayer* player1, GeneralPlayer* player2) const;
+    virtual void printScore(char p1S, int player1,char p2S, int player2) const;
     /**
     * printWinner.
     * @param winner the winner player.

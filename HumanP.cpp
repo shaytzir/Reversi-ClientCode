@@ -195,7 +195,12 @@ vector<cell_t> HumanP::possibleMovesForOneDisk(char current, point_t point, Boar
  * @return the next move choice.
  */
 string HumanP::getNextMove(Board* b) {
-    string choice;
+    char* choice;
     cin >> choice;
     return choice;
+}
+
+void HumanP::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
+    screen->printOptions(this->getSign(), myoptions);
+
 }

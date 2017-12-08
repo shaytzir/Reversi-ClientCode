@@ -1,26 +1,21 @@
 //
-// Shay Tzirin
-// ID: 315314930
-// Yuval Hoch
-// ID: 204468474
+// Created by shay on 12/7/17.
 //
 
-#ifndef EX2_HUMANP_H
-#define EX2_HUMANP_H
+#ifndef EX2_LOCALPLAYER_H
+#define EX2_LOCALPLAYER_H
+
 
 #include "GeneralPlayer.h"
+#include "Client.h"
 
-class HumanP : public GeneralPlayer {
+class LocalPlayer : public GeneralPlayer{
 public:
+    LocalPlayer(int sign, Client* c);
     /**
-     * constructor
-     * @param playerSign sets the player sign, and sets 2 disks for player
-     */
-    HumanP(char playerSign);
-    /**
-     *scoreUp.
-     * @param num number of disks to add to the player's score
-     */
+ *scoreUp.
+ * @param num number of disks to add to the player's score
+ */
     void scoreUp(int num);
     /**
      * scoreDown.
@@ -52,16 +47,22 @@ public:
     vector<cell_t> getMovesForPlayer(Board* gameBoard, char sign) const ;
 
 
-
+    /**
+     * prints the possible choices for this player
+     * @param screen a scren to send the message to
+     * @param myoptions the optional moves for this player
+     */
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
+
     void setSign() {};
 private:
+    Client* client;
     /**
-    *getLocationsOfPlayerOnBoard.
-    * @param sign player sign.
-    * @param gameBoard the board to check on the possible moves.
-    * @return vector of type point of al this player discs on board.
-    */
+*getLocationsOfPlayerOnBoard.
+* @param sign player sign.
+* @param gameBoard the board to check on the possible moves.
+* @return vector of type point of al this player discs on board.
+*/
     vector<point_t> getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const ;
     /**
     *possibleMovesForOneDisk.
@@ -73,4 +74,5 @@ private:
     vector<cell_t> possibleMovesForOneDisk(char current, point_t point, Board* gameBoard) const ;
 };
 
-#endif //EX2_HUMANP_H
+
+#endif //EX2_LOCALPLAYER_H

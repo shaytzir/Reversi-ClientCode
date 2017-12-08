@@ -9,14 +9,14 @@
 #include "Console.h"
 /**
  * printScore.
- * @param player1 the firs player.
- * @param player2 the second player.
+ * @param player1 the firs player scpre.
+ * @param player2 the second player score.
  * Print the current scores of the players.
  */
-void Console::printScore(GeneralPlayer *player1, GeneralPlayer *player2) const {
+void Console::printScore(char p1S, int player1,char p2S, int player2) const {
     cout << "----------------------" << '\n' << "    Current score:" << endl;
-    cout << "      " << player1->getSign() << ":" << player1->getScore() << "    "
-         << player2->getSign() << ":" << player2->getScore() << '\n' << "----------------------" << endl;
+    cout << "      " << p1S << ":" << player1 << "    "
+         << p2S << ":" << player2 << '\n' << "----------------------" << endl;
 }
 /**
  * printOut.
@@ -47,7 +47,7 @@ void Console::printNoMoreMoves(char player) const {
  * @param moves Print out all the player possible moves.
  */
 void Console::printOptions(char player, vector <cell_t> moves) const {
-    cout << player << ": It's your move." << '\n' << "Your possible moves: " << flush;
+    cout <<  "It's "  << player << " move." << '\n' << "Your possible moves: " << flush;
     this->options(moves);
     cout << '\n' << "Please enter your move row,col: " <<endl;
 }

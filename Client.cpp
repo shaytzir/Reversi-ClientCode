@@ -12,9 +12,9 @@ Client::Client(const char *serverIP, int serverPort):
         serverIP(serverIP), serverPort(serverPort),
         clientSocket(0) {
     cout << "Client" << endl;
-    this->disksNum_ = 2;
+    ;
 }
-void Client::connectToServer() {
+int Client::connectToServer() {
     // Create a socket point
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
@@ -45,41 +45,40 @@ void Client::connectToServer() {
     *)&serverAddress, sizeof(serverAddress)) == -1) {
         throw "Error connecting to server";
     }
-    cout << "Connected to server" << endl;
-    do {
-        read(clientSocket, &this->canContinue, sizeof(this->canContinue));
-    } while (this->canContinue);
-}
-void Client::setSign() {
-    int n = read(clientSocket, &this->sign_, sizeof(this->sign_));
+    int sign;
+    int n = read(clientSocket, &sign, sizeof(sign));
     if (n == -1) {
         throw "Error reading result from socket";
     }
-    cout << this->sign_;
+    cout << "Connected to server" << endl;
+    return sign;
 }
 
-int Client::sendExercise(int arg1, char op, int arg2) {
+void Client::sendExercise(char* choice) {
     // Write the exercise arguments to the socket
-    int n = write(clientSocket, &arg1, sizeof(arg1));
-    if (n == -1) {
-        throw "Error writing arg1 to socket";
-    }
-    n = write(clientSocket, &op, sizeof(op));
+    int n  = write(clientSocket, choice, sizeof(choice));
+
     if (n == -1) {
         throw "Error writing op to socket";
     }
-    n = write(clientSocket, &arg2, sizeof(arg2));
-    if (n == -1) {
-        throw "Error writing arg2 to socket";
-    }
-    // Read the result from the server
-    int result;
-    n = read(clientSocket, &result, sizeof(result));
+}
+int Client::getSign() const{
+    int sign;
+    int n = read(clientSocket, &sign, sizeof(sign));
     if (n == -1) {
         throw "Error reading result from socket";
     }
-    return result;
+    return sign;
 }
-char Client::getSign() const{
-    return this->sign_;
+
+char* Client::getChoice() {
+    char* choice;
+
+    char *userChoice = new char[10];
+    // read from socket
+    int n = read(clientSocket, userChoice, 10);
+    if (n == -1) {
+        throw "Error of reading from socket";
+    }
+    return userChoice;
 }

@@ -38,10 +38,10 @@ Board::Board(int wid, int len, char first, char second) {
     //setting start of the game
     int midRow = width_ / 2;
     int midCol = length_ / 2;
-    matrix_[midRow - 1][midCol - 1] = second;
-    matrix_[midRow + 1 - 1 ][midCol + 1 -1] = second;
-    matrix_[midRow - 1][midCol + 1 - 1] = first;
-    matrix_[midRow + 1 - 1][midCol - 1] = first;
+    matrix_[midRow - 1][midCol - 1] = 'O';
+    matrix_[midRow + 1 - 1 ][midCol + 1 -1] = 'O';
+    matrix_[midRow - 1][midCol + 1 - 1] = 'X';
+    matrix_[midRow + 1 - 1][midCol - 1] = 'X';
 }
 /**
  * copy constructor.

@@ -50,7 +50,11 @@ public:
     * @return the AIPlayer best move to do.
     */
     string getNextMove(Board* b) ;
-    void connectToServer() {};
+
+
+
+
+    void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
     void setSign() {};
 private:
     /**

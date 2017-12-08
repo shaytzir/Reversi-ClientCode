@@ -272,3 +272,8 @@ int AIPlayer::setPlayerDisk(cell_t cell, Board* gameBoard) const {
 
     return otherScore;
 }
+
+void AIPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
+    screen->printOptions(this->getSign(), myoptions);
+
+}

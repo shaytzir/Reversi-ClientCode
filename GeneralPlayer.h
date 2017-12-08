@@ -11,6 +11,8 @@
 #include <string>
 #include "Board.h"
 #include "Cell.h"
+#include "Visualization.h"
+
 using namespace std;
 
 class GeneralPlayer {
@@ -48,9 +50,12 @@ public:
      * @return the optional moves.
      */
     virtual vector<cell_t> getMovesForPlayer(Board* gameBoard, char sign) const = 0;
-
-    virtual void connectToServer() = 0;
-    virtual void setSign() = 0;
+    /**
+     * prints the player options to the screen
+     * @param screen screen
+     * @param myoptions list of optional moves
+     */
+    virtual void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const = 0;
 protected:
     char sign_;
     int disksNum_;

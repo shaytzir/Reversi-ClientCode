@@ -2,65 +2,57 @@
 // Created by shay on 12/7/17.
 //
 
-#include <sstream>
-#include "RemotePlayer.h"
+#include <iostream>
+#include "LocalPlayer.h"
 
-RemotePlayer::RemotePlayer(int playerSign, Client* c) {
-    if (playerSign == 1) {
+LocalPlayer::LocalPlayer(int sign, Client* c) {
+    this->client = c;
+    if (sign == 1) {
+        this->sign_ = 'X';
+    } else if (sign == 2) {
         this->sign_ = 'O';
     } else {
-        this->sign_ = 'X';
+        this->sign_ = 'E'; //knowing thers an error;
     }
-    this->disksNum_ = 2;
-    this->client = c;
+    this->disksNum_= 2;
 }
 
 
 /**
- * ScoreUp.
+ *scoreUp.
  * @param num number of disks to add to the player's score
  */
-void RemotePlayer::scoreUp(int num) {
+void LocalPlayer::scoreUp(int num) {
     disksNum_ = disksNum_ + num;
 }
 /**
  * getSign.
- * @return the sign of this player.
+ * @return the sign of this player
  */
-char RemotePlayer::getSign() const {
+char LocalPlayer::getSign() const {
     return sign_;
 }
 /**
  * getScore.
- * @return the score of this player.
+ * @return the score of this player
  */
-int RemotePlayer::getScore() const {
+int LocalPlayer::getScore() const {
     return disksNum_;
 }
 /**
- * ScoreDown.
- * @param num a number to reduce from this player score.
+ * scoreDown.
+ * @param num a number to reduce from this player score
  */
-void RemotePlayer::scoreDown(int num) {
+void LocalPlayer::scoreDown(int num) {
     disksNum_ = disksNum_ - num;
 }
 /**
- * getNextMove.
- * @param gameBoard the board that we need to check the player moves on it.
- * @return the AIPlayer best move to do.
- */
-string RemotePlayer::getNextMove(Board* gameBoard) {
-    char* choice = this->client->getChoice();
-    return (string)choice;
-}
-/**
- *getMovesForPlayer.
- * @param gameBoard the board to check on the possible moves.
+ * getMovesForPlayer.
+ * @param gameBoard the board to check on.
  * @param sign the player sign.
- * @return the possible moves in vector of type cell.
+ * @return the optional moves.
  */
-vector<cell_t> RemotePlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
-
+vector<cell_t> LocalPlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
     vector<cell_t> movesForCurrentPlayer;
     //finding out all locations of the current player on the board
     vector<point_t> locations = getLocationsOfPlayerOnBoard(sign, gameBoard);
@@ -110,19 +102,18 @@ vector<cell_t> RemotePlayer::getMovesForPlayer(Board* gameBoard, char sign) cons
     return movesNoDuplicates;
 }
 /**
- *getLocationsOfPlayerOnBoard.
- * @param sign player sign.
- * @param gameBoard the board to check on the possible moves.
- * @return vector of type point of al this player discs on board.
- */
-vector<point_t> RemotePlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const {
+*getLocationsOfPlayerOnBoard.
+* @param sign player sign.
+* @param gameBoard the board to check on the possible moves.
+* @return vector of type point of al this player discs on board.
+*/
+vector<point_t> LocalPlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const {
     vector<point_t> locations;
-    //for each row and col in the board.
+    //for each row and col in the board
     for (int i = 0; i < gameBoard->getWidth(); i++) {
         for (int j = 0; j < gameBoard->getHeight(); j++) {
-            //if it's the same sign as we're looking for, add to the vector.
-            if (gameBoard->getMatrix()[i][j] == sign) {
-                //Create naw struct point of the location.
+            //if its the same sign as we're looking for, add to the vector
+            if (gameBoard->getSign(i,j) == sign) {
                 struct point_t p;
                 p.x = i;
                 p.y = j;
@@ -133,13 +124,13 @@ vector<point_t> RemotePlayer::getLocationsOfPlayerOnBoard(char sign, Board* game
     return locations;
 }
 /**
- *possibleMovesForOneDisk.
- * @param current sign of the current player.
- * @param point the cell to check the possible moves for.
- * @param gameBoard the board to check on.
- * @return vector of cells that are possible moves of this player on the board.
- */
-vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point, Board* &gameBoard) const {
+*possibleMovesForOneDisk.
+* @param current sign of the current player.
+* @param point the cell to check the possible moves for.
+* @param gameBoard the board to check on.
+* @return vector of cells that are possible moves of this player on the board.
+*/
+vector<cell_t> LocalPlayer::possibleMovesForOneDisk(char current, point_t point, Board* gameBoard) const {
     vector<cell_t> possibleMoves;
     vector<point_t> flippingPoints;
     //first checking the upper row left to right,
@@ -152,8 +143,8 @@ vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point
             //if the disk next to me is in another color
             // keep going that direction until its not in another color
             while (gameBoard->isInBorders(point.x + vertical, point.y + horizontal) &&
-                   (gameBoard->getMatrix()[point.x + vertical][point.y + horizontal] != current) &&
-                   (gameBoard->getMatrix()[point.x + vertical][point.y + horizontal] != ' ')) {
+                   (gameBoard->getSign(point.x + vertical, point.y + horizontal) != current) &&
+                   (gameBoard->getSign(point.x + vertical, point.y + horizontal) != ' ')) {
                 //add this location as a flipping point for input point
                 struct point_t flip;
                 flip.x = point.x + vertical;
@@ -161,17 +152,20 @@ vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point
                 flippingPoints.push_back(flip);
                 vertical = vertical + verBackUp;
                 horizontal = horizontal + horBackUp;
+
             }
             //if its empty and i moved more than one step -
             // its an optional move for the player
             if (gameBoard->isInBorders(point.x+ vertical, point.y + horizontal)) {
-                if ((gameBoard->getMatrix()[point.x + vertical][point.y + horizontal] == ' ') &&
+                if ((gameBoard->getSign(point.x + vertical,
+                                        point.y + horizontal) == ' ') &&
                     ((horBackUp != horizontal) ||
                      (verBackUp != vertical))) {
                     struct cell_t possibleMove;
                     possibleMove.x = point.x +vertical;
                     possibleMove.y = point.y + horizontal;
                     possibleMove.flip = flippingPoints;
+                    // flippingPoints.clear();
                     possibleMoves.push_back(possibleMove);
                 }
             }
@@ -184,10 +178,25 @@ vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point
     }
     return possibleMoves;
 }
+/**
+ * getNextMove.
+ * @param b the board to check the next move in.
+ * @return the next move choice.
+ */
+string LocalPlayer::getNextMove(Board* b) {
+    char* choice;
+    cin >> choice;
+    /*********************************************************
+     * FIND A WAY TO CHECK VALID CHOICE
+     */
+    client->sendExercise(choice);
+    string stringChoice = choice;
+    return choice;
+}
 
+void LocalPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
+    screen->printOptions(this->getSign(), myoptions);
 
-void RemotePlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
-    cout << "waiting for the other player move..." << endl;
 }
 
 

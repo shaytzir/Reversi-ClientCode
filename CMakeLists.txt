@@ -8,7 +8,7 @@ add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
 
-set(SOURCE_FILES main.cpp GeneralPlayer.h Board.cpp Board.h AIPlayer.cpp AIPlayer.h Cell.h Client.cpp Client.h Console.cpp Console.h GameFlow.cpp GameFlow.h HumanP.cpp HumanP.h RemotePlayer.cpp RemotePlayer.h Point.h ReversiRules.cpp ReversiRules.h Visualization.h Tests/gtest_main.cpp Tests/Test_AIPlayer.cpp Tests/Test_Board.cpp Tests/Test_HumanP.cpp Tests/Test_ReversiRules.cpp)
-add_executable(Ex4 ${SOURCE_FILES} GeneralPlayer.h Board.cpp Board.h AIPlayer.cpp AIPlayer.h Cell.h Client.cpp Client.h Console.cpp Console.h GameFlow.cpp GameFlow.h HumanP.cpp HumanP.h RemotePlayer.cpp RemotePlayer.h Point.h ReversiRules.cpp ReversiRules.h Visualization.h Tests/gtest_main.cpp Tests/Test_AIPlayer.cpp Tests/Test_Board.cpp Tests/Test_HumanP.cpp Tests/Test_ReversiRules.cpp)
+set(SOURCE_FILES main.cpp Board.cpp Board.h GeneralPlayer.h ReversiRules.cpp ReversiRules.h HumanP.cpp HumanP.h GameFlow.cpp GameFlow.h Visualization.h Console.cpp Console.h Cell.h Point.h Tests/gtest_main.cpp Tests/Test_Board.cpp Tests/Test_ReversiRules.cpp AIPlayer.cpp AIPlayer.h Tests/Test_HumanP.cpp Tests/Test_AIPlayer.cpp Client.cpp Client.h RemotePlayer.cpp RemotePlayer.h LocalPlayer.cpp LocalPlayer.h)
+add_executable(Ex4 ${SOURCE_FILES} Board.cpp Board.h GeneralPlayer.h ReversiRules.cpp ReversiRules.h HumanP.cpp HumanP.h GameFlow.cpp GameFlow.h Visualization.h Console.cpp Console.h Cell.h Point.h Tests/gtest_main.cpp Tests/Test_Board.cpp Tests/Test_ReversiRules.cpp AIPlayer.cpp AIPlayer.h Tests/Test_HumanP.cpp Tests/Test_AIPlayer.cpp Client.cpp Client.h RemotePlayer.cpp RemotePlayer.h LocalPlayer.cpp LocalPlayer.h)
 
 target_link_libraries(Ex4 gtest gtest_main)

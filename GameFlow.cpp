@@ -30,9 +30,9 @@ void GameFlow::run() {
  * @param white second player
  * @param screen a visualization variable - defined how to show the game
  */
-GameFlow::GameFlow(GeneralPlayer* black,
-                   GeneralPlayer* white, Visualization* screen) {
-    currentGame_ = new ReversiRules(black, white, screen);
+GameFlow::GameFlow(GeneralPlayer* first,
+                   GeneralPlayer* second, Visualization* screen) {
+    currentGame_ = new ReversiRules(first, second, screen);
     this->screen_ = screen;
 }
 /**

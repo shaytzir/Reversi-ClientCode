@@ -37,8 +37,7 @@ void ReversiRules::nextTurn() {
     string choice, key;
     this->screen_->printOut(this->board_);
 
-
-    this->screen_->printScore(blackP_,whiteP_);
+    this->screen_->printScore(blackP_->getSign(), blackP_->getScore(), whiteP_->getSign(),whiteP_->getScore());
     //if the current player has no optional moves
     // he presses any key and the turn goes for the other player
     if (this->movesForCurrentPlayer.size() == 0) {
@@ -51,9 +50,10 @@ void ReversiRules::nextTurn() {
         return;
         //if he has moves, let him choose one of them
     } else {
-        this->screen_->printOptions(now_->getSign(), this->movesForCurrentPlayer);
-
+        //  this->screen_->printOptions(now_->getSign(), this->movesForCurrentPlayer);
+        now_->printMyOptions(this->screen_, this->movesForCurrentPlayer);
         choice = this->now_->getNextMove(this->board_);
+
         //if he didnt type a valid choice, make him choose again
         while (!isThatAnOption(choice)) {
             this->screen_->printError();
@@ -180,7 +180,7 @@ void ReversiRules::whoWon() {
     } else {
         winner = 'T';
     }
-    this->screen_->printScore(blackP_, whiteP_);
+    this->screen_->printScore(blackP_->getSign(), blackP_->getScore(), whiteP_->getSign(),whiteP_->getScore());
     this->screen_->printWinner(winner);
 
 }
