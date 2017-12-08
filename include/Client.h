@@ -1,6 +1,3 @@
-//
-// Created by shay on 12/6/17.
-//
 
 #ifndef EX2_CLIENT_H
 #define EX2_CLIENT_H
@@ -11,8 +8,8 @@ class Client{
 public:
     Client(const char *serverIP, int serverPort);
     int connectToServer();
-    void sendExercise(char* choice);
-    char* getChoice();
+    void sendMove(char* choice);
+    string getChoice();
     int getSign() const;
 
 private:

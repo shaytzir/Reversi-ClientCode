@@ -1,10 +1,5 @@
-//
-// Created by shay on 12/7/17.
-//
-
 #include <sstream>
-#include <cstring>
-#include "RemotePlayer.h"
+#include "../include/RemotePlayer.h"
 
 RemotePlayer::RemotePlayer(int playerSign, Client* c) {
     if (playerSign == 1) {
@@ -17,49 +12,31 @@ RemotePlayer::RemotePlayer(int playerSign, Client* c) {
 }
 
 
-/**
- * ScoreUp.
- * @param num number of disks to add to the player's score
- */
 void RemotePlayer::scoreUp(int num) {
     disksNum_ = disksNum_ + num;
 }
-/**
- * getSign.
- * @return the sign of this player.
- */
+
 char RemotePlayer::getSign() const {
     return sign_;
 }
-/**
- * getScore.
- * @return the score of this player.
- */
+
+
 int RemotePlayer::getScore() const {
     return disksNum_;
 }
-/**
- * ScoreDown.
- * @param num a number to reduce from this player score.
- */
+
 void RemotePlayer::scoreDown(int num) {
     disksNum_ = disksNum_ - num;
 }
-/**
- * getNextMove.
- * @param gameBoard the board that we need to check the player moves on it.
- * @return the AIPlayer best move to do.
- */
+
+
 string RemotePlayer::getNextMove(Board* gameBoard) {
-    char* choice = this->client->getChoice();
-    return (string)choice;
+    //the remote player doesnt choose his own move, he waits for the other player move
+    string choice = this->client->getChoice();
+    return choice;
 }
-/**
- *getMovesForPlayer.
- * @param gameBoard the board to check on the possible moves.
- * @param sign the player sign.
- * @return the possible moves in vector of type cell.
- */
+
+
 vector<cell_t> RemotePlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
 
     vector<cell_t> movesForCurrentPlayer;
@@ -97,7 +74,8 @@ vector<cell_t> RemotePlayer::getMovesForPlayer(Board* gameBoard, char sign) cons
         vector<point_t> sharedPoints;
         for (int i = 0; i < movesForCurrentPlayer.size(); i++) {
             if ((movesForCurrentPlayer[i].x == pointX) && (movesForCurrentPlayer[i].y == pointY)) {
-                sharedPoints.insert(sharedPoints.end(), movesForCurrentPlayer[i].flip.begin(), movesForCurrentPlayer[i].flip.end() );
+                sharedPoints.insert(sharedPoints.end(), movesForCurrentPlayer[i].flip.begin(),
+                                    movesForCurrentPlayer[i].flip.end() );
             }
         }
         struct cell_t cell;
@@ -110,12 +88,7 @@ vector<cell_t> RemotePlayer::getMovesForPlayer(Board* gameBoard, char sign) cons
     // return movesForCurrentPlayer;
     return movesNoDuplicates;
 }
-/**
- *getLocationsOfPlayerOnBoard.
- * @param sign player sign.
- * @param gameBoard the board to check on the possible moves.
- * @return vector of type point of al this player discs on board.
- */
+
 vector<point_t> RemotePlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const {
     vector<point_t> locations;
     //for each row and col in the board.
@@ -133,13 +106,8 @@ vector<point_t> RemotePlayer::getLocationsOfPlayerOnBoard(char sign, Board* game
     }
     return locations;
 }
-/**
- *possibleMovesForOneDisk.
- * @param current sign of the current player.
- * @param point the cell to check the possible moves for.
- * @param gameBoard the board to check on.
- * @return vector of cells that are possible moves of this player on the board.
- */
+
+
 vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point, Board* &gameBoard) const {
     vector<cell_t> possibleMoves;
     vector<point_t> flippingPoints;
@@ -192,13 +160,12 @@ void RemotePlayer::printMyOptions(Visualization *screen, vector<cell_t> myoption
 }
 
 void RemotePlayer::passTurn() {
-    // string key;
-    // cin >> key;
+    //waits untill it gets the "NoMove" message
     string noMove = this->client->getChoice();
 }
 
 void RemotePlayer::noMovesForMe(Visualization *screen) {
-    // screen->printNoMoreMoves(this->getSign());
+    //stays empty because we dont want the other player know the remote has no moves
 }
 
 

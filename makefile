@@ -4,8 +4,8 @@
 #ID: 315314930
 
 a.out: compileAll
-	g++ *.o
+	g++ *.o 
 	rm -f *.o
 
-compileAll: *.h *.cpp
-	g++ -c *.cpp
+compileAll: include/*.h src/*.cpp
+	g++ -c src/*.cpp

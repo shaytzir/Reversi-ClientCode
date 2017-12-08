@@ -7,19 +7,18 @@
 
 #include <cstdlib>
 #include <unistd.h>
-#include "GeneralPlayer.h"
-#include "HumanP.h"
-#include "AIPlayer.h"
-#include "Visualization.h"
-#include "GameFlow.h"
-#include "Console.h"
-#include "Client.h"
-#include "RemotePlayer.h"
-#include "LocalPlayer.h"
+#include <fstream>
+#include "../include/GeneralPlayer.h"
+#include "../include/HumanP.h"
+#include "../include/AIPlayer.h"
+#include "../include/Visualization.h"
+#include "../include/GameFlow.h"
+#include "../include/Console.h"
+#include "../include/Client.h"
+#include "../include/RemotePlayer.h"
+#include "../include/LocalPlayer.h"
 
 int main() {
-    int num1, num2;
-    char op;
     GeneralPlayer *player1, *player2;
     Visualization* screen = new Console();
     int choice;
@@ -33,8 +32,19 @@ int main() {
         player1 = new HumanP('X');
         player2 = new AIPlayer('O');
     } else if (choice == 3) {
-        Client* client = new Client("127.0.0.1", 8000);
+        //read client configuration and connect to server
+        //it doenst work
+       /* ifstream inFile;
+        inFile.open("ClientConfig.txt");
+        string ip;
+        int port;
+        inFile >> ip;
+        inFile >> port;
+        cout<<ip<<endl;
+        cout<<port<<endl;*/
         try {
+            //Client* client = new Client(ip.c_str(), port); //doesnt work with reading from file
+            Client* client = new Client("127.0.0.1", 8000);
             int sign = client->connectToServer();
             player1 = new LocalPlayer(sign, client);
             player2 = new RemotePlayer(sign, client);

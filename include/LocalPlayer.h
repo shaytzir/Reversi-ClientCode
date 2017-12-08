@@ -1,6 +1,4 @@
-//
-// Created by shay on 12/7/17.
-//
+
 
 #ifndef EX2_LOCALPLAYER_H
 #define EX2_LOCALPLAYER_H

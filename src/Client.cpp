@@ -1,4 +1,4 @@
-#include "Client.h"
+#include "../include/Client.h"
 #include <iostream>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -54,14 +54,15 @@ int Client::connectToServer() {
     return sign;
 }
 
-void Client::sendExercise(char* choice) {
-    // Write the exercise arguments to the socket
+void Client::sendMove(char* choice) {
+    // Write the desired move of the player
     int n  = write(clientSocket, choice, sizeof(choice));
 
     if (n == -1) {
         throw "Error writing op to socket";
     }
 }
+
 int Client::getSign() const{
     int sign;
     int n = read(clientSocket, &sign, sizeof(sign));
@@ -71,14 +72,14 @@ int Client::getSign() const{
     return sign;
 }
 
-char* Client::getChoice() {
-    char* choice;
-
+string Client::getChoice() {
     char *userChoice = new char[10];
     // read from socket
     int n = read(clientSocket, userChoice, 10);
     if (n == -1) {
         throw "Error of reading from socket";
     }
-    return userChoice;
+    string choice = userChoice;
+    delete userChoice;
+    return choice;
 }

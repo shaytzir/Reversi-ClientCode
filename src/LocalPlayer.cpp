@@ -1,10 +1,8 @@
-//
-// Created by shay on 12/7/17.
-//
+
 
 #include <iostream>
 #include <cstring>
-#include "LocalPlayer.h"
+#include "../include/LocalPlayer.h"
 
 LocalPlayer::LocalPlayer(int sign, Client* c) {
     this->client = c;
@@ -19,40 +17,26 @@ LocalPlayer::LocalPlayer(int sign, Client* c) {
 }
 
 
-/**
- *scoreUp.
- * @param num number of disks to add to the player's score
- */
+
 void LocalPlayer::scoreUp(int num) {
     disksNum_ = disksNum_ + num;
 }
-/**
- * getSign.
- * @return the sign of this player
- */
+
+
 char LocalPlayer::getSign() const {
     return sign_;
 }
-/**
- * getScore.
- * @return the score of this player
- */
+
+
 int LocalPlayer::getScore() const {
     return disksNum_;
 }
-/**
- * scoreDown.
- * @param num a number to reduce from this player score
- */
+
+
 void LocalPlayer::scoreDown(int num) {
     disksNum_ = disksNum_ - num;
 }
-/**
- * getMovesForPlayer.
- * @param gameBoard the board to check on.
- * @param sign the player sign.
- * @return the optional moves.
- */
+
 vector<cell_t> LocalPlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
     vector<cell_t> movesForCurrentPlayer;
     //finding out all locations of the current player on the board
@@ -102,12 +86,8 @@ vector<cell_t> LocalPlayer::getMovesForPlayer(Board* gameBoard, char sign) const
     // return movesForCurrentPlayer;
     return movesNoDuplicates;
 }
-/**
-*getLocationsOfPlayerOnBoard.
-* @param sign player sign.
-* @param gameBoard the board to check on the possible moves.
-* @return vector of type point of al this player discs on board.
-*/
+
+
 vector<point_t> LocalPlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const {
     vector<point_t> locations;
     //for each row and col in the board
@@ -124,13 +104,8 @@ vector<point_t> LocalPlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameB
     }
     return locations;
 }
-/**
-*possibleMovesForOneDisk.
-* @param current sign of the current player.
-* @param point the cell to check the possible moves for.
-* @param gameBoard the board to check on.
-* @return vector of cells that are possible moves of this player on the board.
-*/
+
+
 vector<cell_t> LocalPlayer::possibleMovesForOneDisk(char current, point_t point, Board* gameBoard) const {
     vector<cell_t> possibleMoves;
     vector<point_t> flippingPoints;
@@ -179,41 +154,40 @@ vector<cell_t> LocalPlayer::possibleMovesForOneDisk(char current, point_t point,
     }
     return possibleMoves;
 }
-/**
- * getNextMove.
- * @param b the board to check the next move in.
- * @return the next move choice.
- */
+
 string LocalPlayer::getNextMove(Board* b) {
     char* choice;
     cin >> choice;
     /*********************************************************
      * FIND A WAY TO CHECK VALID CHOICE
      */
-    client->sendExercise(choice);
+    client->sendMove(choice);
     string stringChoice = choice;
     return choice;
 }
 
 void LocalPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
+    //the local player acts similar to the human player and needs to know his options
     screen->printOptions(this->getSign(), myoptions);
 
 }
-/**
- * passes the turn to te other player
- */
+
 void LocalPlayer::passTurn() {
+    //the local player gets an input and ignores it
     string key;
     cin >> key;
+    //letting the server pass the message this player has no more moves
     string noMoves = "NoMove";
     char* sendFinal = new char[noMoves.size() + 1];
     strcpy(sendFinal, noMoves.c_str());
-    this->client->sendExercise(sendFinal);
+    this->client->sendMove(sendFinal);
     delete sendFinal;
 
 }
 
 void LocalPlayer::noMovesForMe(Visualization *screen) {
+    //local player acts similar to human player - thus, he needs to know
+    //he has no more moves
     screen->printNoMoreMoves(this->getSign());
 }
 

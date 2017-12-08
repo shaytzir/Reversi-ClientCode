@@ -1,23 +1,9 @@
-//
-// Shay Tzirin
-// ID: 315314930
-// Yuval Hoch
-// ID: 204468474
-//
-
-#include "Board.h"
-#include "GeneralPlayer.h"
-#include <iostream>
+#include "../include/Board.h"
+#include "../include/GeneralPlayer.h"
 #include <sstream>
 using namespace std;
 
-/**
- * constructor.
- * @param wid width of table.
- * @param len length of table.
- * @param first sign of first player.
- * @param second sugn of second player.
- */
+
 Board::Board(int wid, int len, char first, char second) {
     width_ = wid;
     length_ = len;
@@ -43,10 +29,7 @@ Board::Board(int wid, int len, char first, char second) {
     matrix_[midRow - 1][midCol + 1 - 1] = 'X';
     matrix_[midRow + 1 - 1][midCol - 1] = 'X';
 }
-/**
- * copy constructor.
- * @param b the board to copy.
- */
+
 Board::Board(Board *b) {
     width_ = b->width_;
     length_ = b->length_;
@@ -65,10 +48,7 @@ Board::Board(Board *b) {
     }
     size = b->size;
 }
-/**
- * printBoard.
- * @return the board as string for sending him to the visual class.
- */
+
 string Board::printBoard() {
     //creating the upper border of the table
     stringstream boardToShow;
@@ -105,9 +85,7 @@ string Board::printBoard() {
     boardToShow << endl;
     return boardToShow.str();
 }
-/**
- * a destructor.
- */
+
 Board::~Board() {
     //frees all arrays kept in the main array
     for (int i = 0; i < width_; i++)
@@ -115,44 +93,23 @@ Board::~Board() {
     //deletes main array
     delete [] matrix_;
 }
-/**
- *getWidth.
- * @return width of matrix
- */
+
 int Board::getWidth() {
     return this->width_;
 }
-/**
- *getHeight.
- * @return length of matrix
- */
+
 int Board::getHeight() {
     return this->length_;
 }
-/**
- *getSign.
- * @param row
- * @param col
- * @return  the disk which is in row,col cell
- */
+
 char Board::getSign(int row, int col) {
     return matrix_[row][col];
 }
-/**
- *setSign.
- * @param row
- * @param col
- * @param sign setting the disk at the row,col cell to have another sign
- */
+
 void Board::setSign(int row, int col, char sign) {
     matrix_[row][col] = sign;
 }
-/**
- *isInBorders.
- * @param row
- * @param col
- * @return yes if row,col if part of the matrix
- */
+
 bool Board::isInBorders(int row, int col) {
     if ((!(row < 0)) && (!(row > getHeight() - 1)) && (!(col < 0)) &&
         (!(col > getWidth() - 1))) {
@@ -160,10 +117,7 @@ bool Board::isInBorders(int row, int col) {
     }
     return false;
 }
-/**
- *fullBoard.
- * @return true if of all cells are set, otherwise false
- */
+
 bool Board::fullBoard() {
     for (int i = 0; i < width_; i++) {
         for (int j = 0; j < length_; j++) {
@@ -174,9 +128,7 @@ bool Board::fullBoard() {
     }
     return true;
 }
-/**
-* getMatrix.
-* @return this board current matrix.
-*/char** Board::getMatrix() const{
+
+char** Board::getMatrix() const{
     return this->matrix_;
 }

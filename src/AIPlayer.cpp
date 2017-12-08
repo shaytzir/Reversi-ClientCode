@@ -1,55 +1,29 @@
-//
-// Shay Tzirin
-// ID: 315314930
-// Yuval Hoch
-// ID: 204468474
-//
-
 #include <sstream>
 #include <algorithm>
-#include "AIPlayer.h"
+#include "../include/AIPlayer.h"
 
-/**
- * AIPlayer.
- * @param playerSign sets the player sign, and sets 2 disks for player
- */
+
 AIPlayer::AIPlayer(char playerSign) {
     sign_ = playerSign;
     disksNum_ = 2;
 }
-/**
- * ScoreUp.
- * @param num number of disks to add to the player's score
- */
+
 void AIPlayer::scoreUp(int num) {
     disksNum_ = disksNum_ + num;
 }
-/**
- * getSign.
- * @return the sign of this player.
- */
+
 char AIPlayer::getSign() const {
     return sign_;
 }
-/**
- * getScore.
- * @return the score of this player.
- */
+
 int AIPlayer::getScore() const {
     return disksNum_;
 }
-/**
- * ScoreDown.
- * @param num a number to reduce from this player score.
- */
+
 void AIPlayer::scoreDown(int num) {
     disksNum_ = disksNum_ - num;
 }
-/**
- * getNextMove.
- * @param gameBoard the board that we need to check the player moves on it.
- * @return the AIPlayer best move to do.
- */
+
 string AIPlayer::getNextMove(Board* gameBoard) {
     int bestChoice[4], score = 0, alreadyChecked = -1;
     //The move to return as string.
@@ -82,26 +56,8 @@ string AIPlayer::getNextMove(Board* gameBoard) {
     choice = c.str();
     return choice;
 }
-/**
- *getMovesForPlayer.
- * @param gameBoard the board to check on the possible moves.
- * @param sign the player sign.
- * @return the possible moves in vector of type cell.
- */
+
 vector<cell_t> AIPlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
-    /* vector<cell_t> movesForCurrentPlayer;
- //finding out all locations of the current player on the board
- vector<point_t> locations = getLocationsOfPlayerOnBoard(this->sign_, gameBoard);
- //for each location of the current player -
- for (int i = 0; i < locations.size(); i++) {
-     //look for optional moves
-     vector<cell_t> possibleMoves = possibleMovesForOneDisk(this->sign_, locations[i], gameBoard);
-     //add for the general list of the player
-     for (int move = 0; move < possibleMoves.size(); move++) {
-         movesForCurrentPlayer.push_back(possibleMoves.at(move));
-     }
- }
- return movesForCurrentPlayer;*/
     vector<cell_t> movesForCurrentPlayer;
     //finding out all locations of the current player on the board
     vector<point_t> locations = getLocationsOfPlayerOnBoard(sign, gameBoard);
@@ -110,7 +66,8 @@ vector<cell_t> AIPlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
     //for each location of the current player -
     for (int i = 0; i < locations.size(); i++) {
         //look for optional moves.
-        vector<cell_t> possibleMoves = possibleMovesForOneDisk(sign, locations[i], gameBoard);
+        vector<cell_t> possibleMoves =
+                possibleMovesForOneDisk(sign, locations[i], gameBoard);
         //add for the general list of the player
         for (int move = 0; move < possibleMoves.size(); move++) {
             add = true;
@@ -136,8 +93,11 @@ vector<cell_t> AIPlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
         int pointY = movesPoints[point].y;
         vector<point_t> sharedPoints;
         for (int i = 0; i < movesForCurrentPlayer.size(); i++) {
-            if ((movesForCurrentPlayer[i].x == pointX) && (movesForCurrentPlayer[i].y == pointY)) {
-                sharedPoints.insert(sharedPoints.end(), movesForCurrentPlayer[i].flip.begin(), movesForCurrentPlayer[i].flip.end() );
+            if ((movesForCurrentPlayer[i].x == pointX)
+                && (movesForCurrentPlayer[i].y == pointY)) {
+                sharedPoints.insert(sharedPoints.end(),
+                                    movesForCurrentPlayer[i].flip.begin(),
+                                    movesForCurrentPlayer[i].flip.end() );
             }
         }
         struct cell_t cell;
@@ -150,12 +110,7 @@ vector<cell_t> AIPlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
     // return movesForCurrentPlayer;
     return movesNoDuplicates;
 }
-/**
- *getLocationsOfPlayerOnBoard.
- * @param sign player sign.
- * @param gameBoard the board to check on the possible moves.
- * @return vector of type point of al this player discs on board.
- */
+
 vector<point_t> AIPlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const {
     vector<point_t> locations;
     //for each row and col in the board.
@@ -173,13 +128,7 @@ vector<point_t> AIPlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameBoar
     }
     return locations;
 }
-/**
- *possibleMovesForOneDisk.
- * @param current sign of the current player.
- * @param point the cell to check the possible moves for.
- * @param gameBoard the board to check on.
- * @return vector of cells that are possible moves of this player on the board.
- */
+
 vector<cell_t> AIPlayer::possibleMovesForOneDisk(char current, point_t point, Board* &gameBoard) const {
     vector<cell_t> possibleMoves;
     vector<point_t> flippingPoints;
@@ -225,12 +174,8 @@ vector<cell_t> AIPlayer::possibleMovesForOneDisk(char current, point_t point, Bo
     }
     return possibleMoves;
 }
-/**
- *setPlayerDisk.
- * @param cell the locetion of the move that we check the score of the other player options.
- * @param gameBoard the board to check on.
- * @return the maximum score that the other player can get from after AIPlayer set his disc on this cell.
- */
+
+
 int AIPlayer::setPlayerDisk(cell_t cell, Board* gameBoard) const {
     int otherScore = -1, i, maxScore = 0;
     vector<cell_t> movesForOtherPlayer;
@@ -275,18 +220,17 @@ int AIPlayer::setPlayerDisk(cell_t cell, Board* gameBoard) const {
 
 void AIPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
     screen->printOptions(this->getSign(), myoptions);
-
 }
 
-/**
- * passes the turn to te other player
- */
+
 void AIPlayer::passTurn() {
+    //gets an input and ignores it
     string key;
     cin >> key;
 }
 
 void AIPlayer::noMovesForMe(Visualization *screen) {
+    //prints normally the message of  "no moves. type anything.."
     screen->printNoMoreMoves(this->getSign());
 
 }

@@ -1,18 +1,8 @@
-//
-// Shay Tzirin
-// ID: 315314930
-// Yuval Hoch
-// ID: 204468474
-//
+
 
 #include <cstring>
-#include "ReversiRules.h"
-/**
- *  constructor.
- * @param black first player
- * @param white  secone player
- * @param screen a screen to show the game on
- */
+#include "../include/ReversiRules.h"
+
 ReversiRules::ReversiRules(GeneralPlayer* black, GeneralPlayer* white, Visualization* screen) {
     this->board_ = new Board(4, 4, black->getSign(), white->getSign());
     this->whiteP_ = white;
@@ -22,16 +12,11 @@ ReversiRules::ReversiRules(GeneralPlayer* black, GeneralPlayer* white, Visualiza
     this->screen_ = screen;
     movesForCurrentPlayer = now_->getMovesForPlayer(this->board_, now_->getSign());
 }
-/**
- * destructor
- */
+
 ReversiRules::~ReversiRules() {
     delete board_;
 }
-/**
- * nextTurn.
- * responsible for the next turn for each player
- */
+
 void ReversiRules::nextTurn() {
     int row = 0, col = 0;
     string choice, key;
@@ -74,12 +59,7 @@ void ReversiRules::nextTurn() {
     switchPlayers();
     this->movesForCurrentPlayer = now_->getMovesForPlayer(this->board_, now_->getSign());
 }
-/**
- * gameover.
- * check if the game is over
- * @return true if there no more moves
- * for both/or the board is full, false otherwise
- */
+
 bool ReversiRules::gameover() {
     GeneralPlayer* temp = now_;
     if (board_->fullBoard()) {
@@ -94,11 +74,7 @@ bool ReversiRules::gameover() {
     }
     return false;
 }
-/**
- *isThatAnOption.
- * @param choice the string the user typed as a choice
- * @return true if its a valid choice, false otherwise
- */
+
 bool ReversiRules::isThatAnOption(string choice) {
     //suppose to be of the pattern  "row,col", at least 3 chars
     if (choice.length() < 3) {
@@ -113,23 +89,13 @@ bool ReversiRules::isThatAnOption(string choice) {
         int optionRow = movesForCurrentPlayer.at(i).x;
         int optionCol = movesForCurrentPlayer.at(i).y;
         option << optionRow - '0' << "," << optionCol - '0';
-        /* if (strcmp(option.str() , choice) == 0) {
-             return true;
-         }*/
         if ((row == optionRow) && (col == optionCol)) {
             return true;
         }
     }
     return false;
 }
-/**
- * setPlayerDisk.
- * set the board to have the current player sign at the
- * desired position, updated scores of players according to the history
- * of the disk
- * @param row wanted row in board
- * @param col wanted col in board
- */
+
 void ReversiRules::setPlayerDisk(int row, int col) {
     //if we set it on the other player existing disk, we need to
     //reduce the other player score in 1
@@ -143,12 +109,7 @@ void ReversiRules::setPlayerDisk(int row, int col) {
     //set the board to have this player disk in the desired position
     board_->setSign(row, col, now_->getSign());
 }
-/**
- * flipFrom.
- *after a disk was set, the func checks which other disk next to it to flip
- * @param row the new disk row in board
- * @param col the new disk col in board
- */
+
 void ReversiRules::flipFrom(int row, int col) {
     for (int i = 0; i < movesForCurrentPlayer.size(); i++) {
         if ((movesForCurrentPlayer[i].x == row) && (movesForCurrentPlayer[i].y == col)) {
@@ -159,12 +120,8 @@ void ReversiRules::flipFrom(int row, int col) {
         movesForCurrentPlayer[i].flip.clear();
     }
 }
-/**
- * whoWon.
- * Checks witch player has more points and sends the information to screen.
- */
+
 void ReversiRules::whoWon() {
-    //stringstream print;
     int scoreBlackP = blackP_->getScore();
     int scoreWhiteP = whiteP_->getScore();
     char winner;
@@ -185,5 +142,4 @@ void ReversiRules::switchPlayers() {
     GeneralPlayer* temp = now_;
     this->now_ = later_;
     later_ = temp;
-
 }
