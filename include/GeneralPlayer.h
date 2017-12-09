@@ -59,7 +59,17 @@ public:
      * @param myoptions list of optional moves
      */
     virtual void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const = 0;
+
+    /**
+     * printItsnAOption.
+     * @param screen print on sceen that the input is not valid.
+     */
     virtual void printItsnAOption(Visualization* screen) const = 0;
+
+    /**
+     * sendMove.
+     * @param choice in case it's online game' send the move to server.
+     */
     virtual void sendMove(const char* choice) const = 0;
 protected:
     char sign_;

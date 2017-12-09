@@ -15,10 +15,12 @@ public:
      * @param screen a visualization variable - defined how to show the game
      */
     GameFlow(GeneralPlayer* black, GeneralPlayer* white, Visualization* screen);
+
     /**
      * destructor
      */
     ~GameFlow();
+
     /**
      * run.
      * This function runs the game according to a certain game logic.

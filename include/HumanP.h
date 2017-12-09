@@ -50,15 +50,32 @@ public:
     void passTurn();
 
     /**
-     *
-     *
+     * noMovesForMe.
      *  print there no moves for current player;
      */
     void noMovesForMe(Visualization* screen);
 
+    /**
+     * prints the possible choices for this player
+     * @param screen a scren to send the message to
+     * @param myoptions the optional moves for this player
+     */
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
+
+    /**
+     * setSign.
+     */
     void setSign() {};
+
+    /**
+    * printItsnAOption.
+    * print that the input is not a option.
+    */
     void printItsnAOption(Visualization* screen) const;
+
+    /**
+     * sendMove.
+     */
     void sendMove(const char* choice) const {};
 private:
     /**

@@ -56,14 +56,25 @@ public:
     void passTurn();
 
     /**
-     *
-     *
-     * print there no moves for current player;
+     * noMovesForMe.
+     * print there no moves for current player.
      * stays empty because we dont want the other player know the remote has no moves
      */
     void noMovesForMe(Visualization* screen){};
+
+    /**
+     * setSign.
+     */
     void setSign() {};
+
+    /**
+     * printItsnAOption.
+     */
     void printItsnAOption(Visualization* screen) const {};
+
+    /**
+    * sendMove.
+    */
     void sendMove(const char* choice) const {};
 private:
     /**

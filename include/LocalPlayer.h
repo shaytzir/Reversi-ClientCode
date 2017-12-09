@@ -61,8 +61,20 @@ public:
      */
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
 
+    /**
+     * setSign.
+     */
     void setSign() {};
+
+    /**
+     * printItsnAOption.
+    * print that the input is not a option.
+    */
     void printItsnAOption(Visualization* screen) const;
+
+    /**
+    * sendMove.
+    */
     void sendMove(const char* choice) const;
 private:
     Client* client;

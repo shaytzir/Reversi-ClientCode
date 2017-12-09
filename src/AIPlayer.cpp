@@ -235,6 +235,7 @@ void AIPlayer::noMovesForMe(Visualization *screen) {
     screen->printNoMoreMoves(this->getSign());
 
 }
+
 void AIPlayer::printItsnAOption(Visualization* screen) const {
     screen->printError();
 }

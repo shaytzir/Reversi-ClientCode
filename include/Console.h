@@ -50,8 +50,8 @@ public:
     virtual void openScreen();
 
     /**
- * print the last move of the last player
- */
+    * print the last move of the last player
+    */
     virtual void printWhichMovePlayed(char player, string move);
 private:
     /**

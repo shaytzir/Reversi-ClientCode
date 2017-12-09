@@ -33,18 +33,17 @@ int main() {
         player2 = new AIPlayer('O');
     } else if (choice == 3) {
         //read client configuration and connect to server
-        //it doenst work
-       /* ifstream inFile;
-        inFile.open("ClientConfig.txt");
+        ifstream inFile;
+        inFile.open("./exe/ClientConfig.txt");
         string ip;
+        const char* IP;
         int port;
         inFile >> ip;
         inFile >> port;
-        cout<<ip<<endl;
-        cout<<port<<endl;*/
+        IP = ip.c_str();
         try {
             //Client* client = new Client(ip.c_str(), port); //doesnt work with reading from file
-            Client* client = new Client("127.0.0.1", 8000);
+            Client* client = new Client(IP, port);
             int sign = client->connectToServer();
             player1 = new LocalPlayer(sign, client);
             player2 = new RemotePlayer(sign, client);
