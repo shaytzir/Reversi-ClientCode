@@ -32,7 +32,9 @@ void RemotePlayer::scoreDown(int num) {
 
 string RemotePlayer::getNextMove(Board* gameBoard) {
     //the remote player doesnt choose his own move, he waits for the other player move
-    string choice = this->client->getChoice();
+    string choice;
+    choice.clear();
+    choice = this->client->getChoice();
     return choice;
 }
 
@@ -163,9 +165,3 @@ void RemotePlayer::passTurn() {
     //waits untill it gets the "NoMove" message
     string noMove = this->client->getChoice();
 }
-
-void RemotePlayer::noMovesForMe(Visualization *screen) {
-    //stays empty because we dont want the other player know the remote has no moves
-}
-
-

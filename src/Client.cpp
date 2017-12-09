@@ -54,10 +54,9 @@ int Client::connectToServer() {
     return sign;
 }
 
-void Client::sendMove(char* choice) {
+void Client::sendMove(const char* choice) {
     // Write the desired move of the player
     int n  = write(clientSocket, choice, sizeof(choice));
-
     if (n == -1) {
         throw "Error writing op to socket";
     }
@@ -79,7 +78,9 @@ string Client::getChoice() {
     if (n == -1) {
         throw "Error of reading from socket";
     }
-    string choice = userChoice;
+    string choice;
+    choice.clear();
+    choice = userChoice;
     delete userChoice;
     return choice;
 }

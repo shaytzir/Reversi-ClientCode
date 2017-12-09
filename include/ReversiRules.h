@@ -46,12 +46,6 @@ public:
      */
     void flipFrom(int row, int col);
     /**
-     *isThatAnOption.
-     * @param choice the string the user typed as a choice
-     * @return true if its a valid choice, false otherwise
-     */
-    bool isThatAnOption(string choice);
-    /**
      * setPlayerDisk.
      * set the board to have the current player sign at the
      * desired position, updated scores of players according to the history
@@ -69,6 +63,12 @@ public:
      * making "now" player to be the next one.
      */
     void switchPlayers();
+    /**
+    *thisIsAOption.
+    * @param choice the string the user typed as a choice
+    * @return true if its a valid choice, false otherwise
+    */
+    bool thisIsAOption(string choice);
 private:
     Board* board_;
     GeneralPlayer* whiteP_;

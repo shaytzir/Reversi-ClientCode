@@ -58,6 +58,8 @@ public:
 
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
     void setSign() {};
+    void printItsnAOption(Visualization* screen) const;
+    void sendMove(const char* choice) const {};
 private:
     /**
     *getLocationsOfPlayerOnBoard.

@@ -59,9 +59,12 @@ public:
      *
      *
      * print there no moves for current player;
+     * stays empty because we dont want the other player know the remote has no moves
      */
-    void noMovesForMe(Visualization* screen);
+    void noMovesForMe(Visualization* screen){};
     void setSign() {};
+    void printItsnAOption(Visualization* screen) const {};
+    void sendMove(const char* choice) const {};
 private:
     /**
     *getLocationsOfPlayerOnBoard.

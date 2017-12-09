@@ -59,6 +59,8 @@ public:
      * @param myoptions list of optional moves
      */
     virtual void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const = 0;
+    virtual void printItsnAOption(Visualization* screen) const = 0;
+    virtual void sendMove(const char* choice) const = 0;
 protected:
     char sign_;
     int disksNum_;

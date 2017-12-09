@@ -153,7 +153,8 @@ vector<cell_t> HumanP::possibleMovesForOneDisk(char current, point_t point, Boar
 
 
 string HumanP::getNextMove(Board* b) {
-    char* choice;
+    string choice;
+    choice.clear();
     cin >> choice;
     return choice;
 }
@@ -175,4 +176,7 @@ void HumanP::noMovesForMe(Visualization *screen) {
     //for normal human player - print he has no more moves
     screen->printNoMoreMoves(this->getSign());
 
+}
+void HumanP::printItsnAOption(Visualization* screen) const {
+    screen->printError();
 }

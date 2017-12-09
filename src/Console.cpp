@@ -26,7 +26,7 @@ void Console::printNoMoreMoves(char player) const {
 }
 
 void Console::printOptions(char player, vector <cell_t> moves) const {
-    cout <<  "It's "  << player << " move." << '\n' << "Your possible moves: " << flush;
+    cout <<  "It's "  << player << " move." << '\n' << "Your possible moves: ";
     this->options(moves);
     cout << '\n' << "Please enter your move row,col: " <<endl;
 }

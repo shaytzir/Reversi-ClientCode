@@ -156,20 +156,20 @@ vector<cell_t> LocalPlayer::possibleMovesForOneDisk(char current, point_t point,
 }
 
 string LocalPlayer::getNextMove(Board* b) {
-    char* choice;
+    string choice;
+    choice.clear();
     cin >> choice;
-    /*********************************************************
-     * FIND A WAY TO CHECK VALID CHOICE
-     */
-    client->sendMove(choice);
-    string stringChoice = choice;
     return choice;
 }
-
+void LocalPlayer::sendMove(const char* choice) const {
+    client->sendMove(choice);
+}
 void LocalPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
     //the local player acts similar to the human player and needs to know his options
     screen->printOptions(this->getSign(), myoptions);
-
+}
+void LocalPlayer::printItsnAOption(Visualization* screen) const {
+    screen->printError();
 }
 
 void LocalPlayer::passTurn() {

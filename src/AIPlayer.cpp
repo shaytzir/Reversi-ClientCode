@@ -28,6 +28,7 @@ string AIPlayer::getNextMove(Board* gameBoard) {
     int bestChoice[4], score = 0, alreadyChecked = -1;
     //The move to return as string.
     string choice;
+    choice.clear();
     //Check the optional moves for AIPlayer.
     vector<cell_t> moves = getMovesForPlayer(gameBoard, this->sign_);
     //Get the first choice score.
@@ -233,4 +234,7 @@ void AIPlayer::noMovesForMe(Visualization *screen) {
     //prints normally the message of  "no moves. type anything.."
     screen->printNoMoreMoves(this->getSign());
 
+}
+void AIPlayer::printItsnAOption(Visualization* screen) const {
+    screen->printError();
 }

@@ -8,7 +8,7 @@ class Client{
 public:
     Client(const char *serverIP, int serverPort);
     int connectToServer();
-    void sendMove(char* choice);
+    void sendMove(const char* choice);
     string getChoice();
     int getSign() const;
 

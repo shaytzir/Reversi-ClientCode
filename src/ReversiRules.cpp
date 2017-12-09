@@ -20,6 +20,7 @@ ReversiRules::~ReversiRules() {
 void ReversiRules::nextTurn() {
     int row = 0, col = 0;
     string choice, key;
+    const char* choiceToSend;
     this->screen_->printOut(this->board_);
     this->screen_->printScore(blackP_->getSign(), blackP_->getScore(),
                               whiteP_->getSign(),whiteP_->getScore());
@@ -39,14 +40,20 @@ void ReversiRules::nextTurn() {
     } else {
         now_->printMyOptions(this->screen_, this->movesForCurrentPlayer);
         choice = this->now_->getNextMove(this->board_);
-
         //if he didnt type a valid choice, make him choose again
-        while (!isThatAnOption(choice)) {
-            this->screen_->printError();
-            cin >> choice;
+        while(!thisIsAOption(choice)) {
+            now_->printItsnAOption(this->screen_);
+            //cin >> choice;
+            choice.clear();
+            choice = this->now_->getNextMove(this->board_);
         }
+        //while (!isThatAnOption(choice)) {
+            //this->screen_->printError();
+            //cin >> choice;
+        //}
     }
-
+    choiceToSend = choice.c_str();
+    this->now_->sendMove(choiceToSend);
     this->screen_->printWhichMovePlayed(now_->getSign(), choice);
     row = choice.at(0) -'0' - 1;
     col = choice.at(2) - '0' - 1;
@@ -59,7 +66,14 @@ void ReversiRules::nextTurn() {
     switchPlayers();
     this->movesForCurrentPlayer = now_->getMovesForPlayer(this->board_, now_->getSign());
 }
-
+bool ReversiRules::thisIsAOption(string choice) {
+    for(int i = 0; i < this->movesForCurrentPlayer.size(); i++) {
+        if(choice[0] -'0' - 1 == this->movesForCurrentPlayer[i].x && choice[2] -'0' - 1 == this->movesForCurrentPlayer[i].y) {
+            return true;
+        }
+    }
+    return false;
+}
 bool ReversiRules::gameover() {
     GeneralPlayer* temp = now_;
     if (board_->fullBoard()) {
@@ -71,27 +85,6 @@ bool ReversiRules::gameover() {
             return true;
         }
         // switchPlayers();
-    }
-    return false;
-}
-
-bool ReversiRules::isThatAnOption(string choice) {
-    //suppose to be of the pattern  "row,col", at least 3 chars
-    if (choice.length() < 3) {
-        return false;
-    }
-
-    int row = choice.at(0) -'0' - 1;
-    int col = choice.at(2) - '0' - 1;
-    //if the choice is part of the vector of choices return true
-    for (int i = 0; i < movesForCurrentPlayer.size(); i++) {
-        stringstream option;
-        int optionRow = movesForCurrentPlayer.at(i).x;
-        int optionCol = movesForCurrentPlayer.at(i).y;
-        option << optionRow - '0' << "," << optionCol - '0';
-        if ((row == optionRow) && (col == optionCol)) {
-            return true;
-        }
     }
     return false;
 }

@@ -41,12 +41,12 @@ EXPECT_TRUE(rules.gameover());
  * checks all of the following inputs are not valid for an option
  */
 TEST_F(Test_ReversiRules, InvalidOptionToChoose)  {
-EXPECT_FALSE(rules.isThatAnOption("1.1"));
-EXPECT_FALSE(rules.isThatAnOption("0,0"));
-EXPECT_FALSE(rules.isThatAnOption("-1,0"));
-EXPECT_FALSE(rules.isThatAnOption("2.5,7"));
-EXPECT_FALSE(rules.isThatAnOption("a,b"));
-EXPECT_FALSE(rules.isThatAnOption("2,5,6"));
+EXPECT_FALSE(rules.thisIsAOption("1.1"));
+EXPECT_FALSE(rules.thisIsAOption("0,0"));
+EXPECT_FALSE(rules.thisIsAOption("-1,0"));
+EXPECT_FALSE(rules.thisIsAOption("2.5,7"));
+EXPECT_FALSE(rules.thisIsAOption("a,b"));
+EXPECT_FALSE(rules.thisIsAOption("2,5,6"));
 }
 
 
