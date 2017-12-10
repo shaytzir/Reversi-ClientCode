@@ -19,6 +19,7 @@
 #include "../include/LocalPlayer.h"
 
 int main() {
+    Client* client;
     GeneralPlayer *player1, *player2;
     Visualization* screen = new Console();
     int choice;
@@ -34,7 +35,7 @@ int main() {
     } else if (choice == 3) {
         //read client configuration and connect to server
         ifstream inFile;
-        inFile.open("./exe/ClientConfig.txt");
+        inFile.open("ClientConfig.txt");
         string ip;
         const char* IP;
         int port;
@@ -42,8 +43,7 @@ int main() {
         inFile >> port;
         IP = ip.c_str();
         try {
-            //Client* client = new Client(ip.c_str(), port); //doesnt work with reading from file
-            Client* client = new Client(IP, port);
+            client =new Client(IP, port);
             int sign = client->connectToServer();
             player1 = new LocalPlayer(sign, client);
             player2 = new RemotePlayer(sign, client);
@@ -64,6 +64,7 @@ int main() {
     game.run();
     delete player1;
     delete player2;
+    delete client;
     delete screen;
     return 0;
 }

@@ -4,8 +4,7 @@
 #include <cstring>
 #include "../include/LocalPlayer.h"
 
-LocalPlayer::LocalPlayer(int sign, Client* c) {
-    this->client = c;
+LocalPlayer::LocalPlayer(int sign, Client *c) {
     if (sign == 1) {
         this->sign_ = 'X';
     } else if (sign == 2) {
@@ -14,6 +13,7 @@ LocalPlayer::LocalPlayer(int sign, Client* c) {
         this->sign_ = 'E'; //knowing thers an error;
     }
     this->disksNum_= 2;
+    this->client = c;
 }
 
 
@@ -181,7 +181,7 @@ void LocalPlayer::passTurn() {
     char* sendFinal = new char[noMoves.size() + 1];
     strcpy(sendFinal, noMoves.c_str());
     this->client->sendMove(sendFinal);
-    delete sendFinal;
+    delete[] sendFinal;
 
 }
 

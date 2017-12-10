@@ -1,0 +1,6 @@
+formay:fe109c4 - yuval, 34 hours ago:10/12 updat comments
+formay:9c86aae - yuval, 35 hours ago:10/12 change the way of the player to check if he's input is valid
+formay:f87973d - shaytzir, 2 days ago:seperated to diffrent directories. deleted id and comments on func signiture in cpp. edited comments to code
+formay:124bc34 - shaytzir, 2 days ago:dealt with the situation of one player with no moves. theres a need to take care of the END message
+formay:746ffda - shaytzir, 2 days ago:added remote and local players to communicate with server, changed the nextTurn function in ReversiRules to print sutible for all players choice
+formay:d99580b - shaytzir, 3 days ago:Initial commit

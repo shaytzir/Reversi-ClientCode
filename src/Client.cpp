@@ -81,6 +81,6 @@ string Client::getChoice() {
     string choice;
     choice.clear();
     choice = userChoice;
-    delete userChoice;
+    delete[] userChoice;
     return choice;
 }

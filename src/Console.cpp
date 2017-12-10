@@ -21,8 +21,7 @@ void Console::printError() const {
 
 
 void Console::printNoMoreMoves(char player) const {
-    cout << player << " played his move." << '\n'
-         << "No possible moves. Play passes back to the other player. Press eny key to continue.";
+    cout << "No possible moves. Play passes back to the other player. Press eny key to continue.";
 }
 
 void Console::printOptions(char player, vector <cell_t> moves) const {

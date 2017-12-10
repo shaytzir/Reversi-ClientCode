@@ -43,28 +43,23 @@ void ReversiRules::nextTurn() {
         //if he didnt type a valid choice, make him choose again
         while(!thisIsAOption(choice)) {
             now_->printItsnAOption(this->screen_);
-            //cin >> choice;
             choice.clear();
             choice = this->now_->getNextMove(this->board_);
         }
-        //while (!isThatAnOption(choice)) {
-            //this->screen_->printError();
-            //cin >> choice;
-        //}
+        choiceToSend = choice.c_str();
+        this->now_->sendMove(choiceToSend);
+        this->screen_->printWhichMovePlayed(now_->getSign(), choice);
+        row = choice.at(0) -'0' - 1;
+        col = choice.at(2) - '0' - 1;
+        //set his choice to have his sign
+        setPlayerDisk(row, col);
+        //flip any disks standing in the way according to rules
+        flipFrom(row, col);
+        this->movesForCurrentPlayer.clear();
+        //switch between players
+        switchPlayers();
+        this->movesForCurrentPlayer = now_->getMovesForPlayer(this->board_, now_->getSign());
     }
-    choiceToSend = choice.c_str();
-    this->now_->sendMove(choiceToSend);
-    this->screen_->printWhichMovePlayed(now_->getSign(), choice);
-    row = choice.at(0) -'0' - 1;
-    col = choice.at(2) - '0' - 1;
-    //set his choice to have his sign
-    setPlayerDisk(row, col);
-    //flip any disks standing in the way according to rules
-    flipFrom(row, col);
-    this->movesForCurrentPlayer.clear();
-    //switch between players
-    switchPlayers();
-    this->movesForCurrentPlayer = now_->getMovesForPlayer(this->board_, now_->getSign());
 }
 bool ReversiRules::thisIsAOption(string choice) {
     for(int i = 0; i < this->movesForCurrentPlayer.size(); i++) {
