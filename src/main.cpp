@@ -42,7 +42,7 @@ int main() {
         inFile >> ip;
         inFile >> port;*/
         string ip = "127.0.0.1";/////////////////
-        int port = 8000git ;//////////////////
+        int port = 8000;//////////////////
         const char* IP = ip.c_str();
         try {
             client = new Client(IP, port);
