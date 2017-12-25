@@ -1,33 +1,33 @@
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #include <iostream>
 #include "../include/HumanP.h"
-
 
 HumanP::HumanP(char playerSign) {
     sign_ = playerSign;
     disksNum_ = 2;
 }
 
-
 void HumanP::scoreUp(int num) {
     disksNum_ = disksNum_ + num;
 }
-
 
 char HumanP::getSign() const {
     return sign_;
 }
 
-
 int HumanP::getScore() const {
     return disksNum_;
 }
 
-
 void HumanP::scoreDown(int num) {
     disksNum_ = disksNum_ - num;
 }
-
 
 vector<cell_t> HumanP::getMovesForPlayer(Board* gameBoard, char sign) const {
 
@@ -83,7 +83,6 @@ vector<cell_t> HumanP::getMovesForPlayer(Board* gameBoard, char sign) const {
     return movesNoDuplicates;
 }
 
-
 vector<point_t> HumanP::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const {
     vector<point_t> locations;
     //for each row and col in the board
@@ -100,7 +99,6 @@ vector<point_t> HumanP::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard)
     }
     return locations;
 }
-
 
 vector<cell_t> HumanP::possibleMovesForOneDisk(char current, point_t point, Board* gameBoard) const {
     vector<cell_t> possibleMoves;
@@ -151,7 +149,6 @@ vector<cell_t> HumanP::possibleMovesForOneDisk(char current, point_t point, Boar
     return possibleMoves;
 }
 
-
 string HumanP::getNextMove(Board* b) {
     string choice;
     choice.clear();
@@ -171,12 +168,12 @@ void HumanP::passTurn() {
     cin >> key;
 }
 
-
 void HumanP::noMovesForMe(Visualization *screen) {
     //for normal human player - print he has no more moves
     screen->printNoMoreMoves(this->getSign());
 
 }
+
 void HumanP::printItsnAOption(Visualization* screen) const {
     screen->printError();
 }

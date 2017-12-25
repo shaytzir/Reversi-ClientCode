@@ -1,4 +1,9 @@
-
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #include <cstring>
 #include "../include/ReversiRules.h"
@@ -61,6 +66,7 @@ void ReversiRules::nextTurn() {
         this->movesForCurrentPlayer = now_->getMovesForPlayer(this->board_, now_->getSign());
     }
 }
+
 bool ReversiRules::thisIsAOption(string choice) {
     for(int i = 0; i < this->movesForCurrentPlayer.size(); i++) {
         if(choice[0] -'0' - 1 == this->movesForCurrentPlayer[i].x && choice[2] -'0' - 1 == this->movesForCurrentPlayer[i].y) {
@@ -69,6 +75,7 @@ bool ReversiRules::thisIsAOption(string choice) {
     }
     return false;
 }
+
 bool ReversiRules::gameover() {
     GeneralPlayer* temp = now_;
     if (board_->fullBoard()) {

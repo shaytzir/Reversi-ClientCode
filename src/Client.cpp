@@ -1,3 +1,10 @@
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
+
 #include "../include/Client.h"
 #include <iostream>
 #include <sys/socket.h>
@@ -102,13 +109,6 @@ void Client::sendChoice() {
             break;
         }
     }
-    /*int check;
-    int n = read(clientSocket, &check, sizeof(check));
-    if (check == -1) {
-        cout << "There is already game with this name.\n";
-        close(clientSocket);
-        connectToServer();
-    }*/
 }
 
 void Client::getMessage() {

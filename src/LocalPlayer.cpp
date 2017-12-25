@@ -1,4 +1,9 @@
-
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #include <iostream>
 #include <cstring>
@@ -16,22 +21,17 @@ LocalPlayer::LocalPlayer(int sign, Client *c) {
     this->client = c;
 }
 
-
-
 void LocalPlayer::scoreUp(int num) {
     disksNum_ = disksNum_ + num;
 }
-
 
 char LocalPlayer::getSign() const {
     return sign_;
 }
 
-
 int LocalPlayer::getScore() const {
     return disksNum_;
 }
-
 
 void LocalPlayer::scoreDown(int num) {
     disksNum_ = disksNum_ - num;
@@ -87,7 +87,6 @@ vector<cell_t> LocalPlayer::getMovesForPlayer(Board* gameBoard, char sign) const
     return movesNoDuplicates;
 }
 
-
 vector<point_t> LocalPlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameBoard) const {
     vector<point_t> locations;
     //for each row and col in the board
@@ -104,7 +103,6 @@ vector<point_t> LocalPlayer::getLocationsOfPlayerOnBoard(char sign, Board* gameB
     }
     return locations;
 }
-
 
 vector<cell_t> LocalPlayer::possibleMovesForOneDisk(char current, point_t point, Board* gameBoard) const {
     vector<cell_t> possibleMoves;
@@ -161,13 +159,16 @@ string LocalPlayer::getNextMove(Board* b) {
     cin >> choice;
     return choice;
 }
+
 void LocalPlayer::sendMove(const char* choice) const {
     client->sendMove(choice);
 }
+
 void LocalPlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
     //the local player acts similar to the human player and needs to know his options
     screen->printOptions(this->getSign(), myoptions);
 }
+
 void LocalPlayer::printItsnAOption(Visualization* screen) const {
     screen->printError();
 }
@@ -190,5 +191,3 @@ void LocalPlayer::noMovesForMe(Visualization *screen) {
     //he has no more moves
     screen->printNoMoreMoves(this->getSign());
 }
-
-

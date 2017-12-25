@@ -1,4 +1,9 @@
-
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #ifndef EX2_REVERSIRULES_H
 #define EX2_REVERSIRULES_H

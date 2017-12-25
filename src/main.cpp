@@ -6,12 +6,10 @@
 //
 
 #include <cstdlib>
-#include <unistd.h>
 #include <fstream>
 #include "../include/GeneralPlayer.h"
 #include "../include/HumanP.h"
 #include "../include/AIPlayer.h"
-#include "../include/Visualization.h"
 #include "../include/GameFlow.h"
 #include "../include/Console.h"
 #include "../include/Client.h"
@@ -42,7 +40,7 @@ int main() {
         inFile >> ip;
         inFile >> port;*/
         string ip = "127.0.0.1";/////////////////
-        int port = 8000;//////////////////
+        int port = 80000;//////////////////
         const char* IP = ip.c_str();
         try {
             client = new Client(IP, port);
@@ -61,7 +59,6 @@ int main() {
             exit(-1);
         }
     }
-
     //creates new game
     GameFlow game(player1, player2, screen);
     //runs the game

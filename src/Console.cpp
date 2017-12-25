@@ -1,7 +1,12 @@
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #include <cstdlib>
 #include "../include/Console.h"
-
 
 void Console::printScore(char p1S, int player1,char p2S, int player2) const {
     cout << "----------------------" << '\n' << "    Current score:" << endl;
@@ -9,16 +14,13 @@ void Console::printScore(char p1S, int player1,char p2S, int player2) const {
          << p2S << ":" << player2 << '\n' << "----------------------" << endl;
 }
 
-
 void Console::printOut(Board* gameBoard) const {
     cout << gameBoard->printBoard();
 }
 
-
 void Console::printError() const {
     cout << "Your input is not from the options." << endl;
 }
-
 
 void Console::printNoMoreMoves(char player) const {
     cout << "No possible moves. Play passes back to the other player. Press eny key to continue.";
@@ -57,7 +59,6 @@ bool Console::isAlreadyIn(vector <cell_t*> print, cell_t c) const {
     return false;
 }
 
-
 void Console::printWinner(char winner) const {
     cout << "Game over!" << endl;
     if (winner == 'T') {
@@ -66,7 +67,6 @@ void Console::printWinner(char winner) const {
     }
     cout << winner << " is the winner!!!" << endl;
 }
-
 
 void Console::openScreen() {
     cout << "Please enter your option:\n(1) Two humen players.\n(2) Play against the computer.\n(3) Play against remote player." << endl;
@@ -135,5 +135,3 @@ string Console::getInfoForReq(int req) {
 
     return inputReq;
 }
-
-

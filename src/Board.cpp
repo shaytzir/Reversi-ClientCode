@@ -1,8 +1,14 @@
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
+
 #include "../include/Board.h"
 #include "../include/GeneralPlayer.h"
 #include <sstream>
 using namespace std;
-
 
 Board::Board(int wid, int len, char first, char second) {
     width_ = wid;

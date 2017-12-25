@@ -1,7 +1,12 @@
-#include <sstream>
-#include <algorithm>
-#include "../include/AIPlayer.h"
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
+#include <sstream>
+#include "../include/AIPlayer.h"
 
 AIPlayer::AIPlayer(char playerSign) {
     sign_ = playerSign;

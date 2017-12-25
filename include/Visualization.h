@@ -1,3 +1,9 @@
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #ifndef EX2_VISUALIZATION_H
 #define EX2_VISUALIZATION_H
@@ -66,6 +72,7 @@ public:
     virtual void subMenuRemote() = 0;
 
     virtual string getRequest() = 0;
+
     virtual string getInfoForReq(int req) = 0;
 };
 

@@ -1,8 +1,12 @@
-
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #ifndef EX2_REMOTEPLAYER_H
 #define EX2_REMOTEPLAYER_H
-
 
 #include "GeneralPlayer.h"
 #include "Client.h"
@@ -49,29 +53,24 @@ public:
      * @param myoptions list of options
      */
     void printMyOptions(Visualization* screen, vector<cell_t> myoptions) const;
-
     /**
- * passes the turn to te other player
- */
+    * passes the turn to te other player
+    */
     void passTurn();
-
     /**
      * noMovesForMe.
      * print there no moves for current player.
      * stays empty because we dont want the other player know the remote has no moves
      */
     void noMovesForMe(Visualization* screen){};
-
     /**
      * setSign.
      */
     void setSign() {};
-
     /**
      * printItsnAOption.
      */
     void printItsnAOption(Visualization* screen) const {};
-
     /**
     * sendMove.
     */
@@ -93,7 +92,6 @@ private:
     */
     vector<cell_t> possibleMovesForOneDisk(char current, point_t point, Board* &gameBoard) const ;
     Client* client;
-
 };
 
 

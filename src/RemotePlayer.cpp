@@ -1,3 +1,10 @@
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
+
 #include <sstream>
 #include "../include/RemotePlayer.h"
 
@@ -11,7 +18,6 @@ RemotePlayer::RemotePlayer(int playerSign, Client* c) {
     this->client = c;
 }
 
-
 void RemotePlayer::scoreUp(int num) {
     disksNum_ = disksNum_ + num;
 }
@@ -19,7 +25,6 @@ void RemotePlayer::scoreUp(int num) {
 char RemotePlayer::getSign() const {
     return sign_;
 }
-
 
 int RemotePlayer::getScore() const {
     return disksNum_;
@@ -29,7 +34,6 @@ void RemotePlayer::scoreDown(int num) {
     disksNum_ = disksNum_ - num;
 }
 
-
 string RemotePlayer::getNextMove(Board* gameBoard) {
     //the remote player doesnt choose his own move, he waits for the other player move
     string choice;
@@ -37,7 +41,6 @@ string RemotePlayer::getNextMove(Board* gameBoard) {
     choice = this->client->getChoice();
     return choice;
 }
-
 
 vector<cell_t> RemotePlayer::getMovesForPlayer(Board* gameBoard, char sign) const {
 
@@ -109,7 +112,6 @@ vector<point_t> RemotePlayer::getLocationsOfPlayerOnBoard(char sign, Board* game
     return locations;
 }
 
-
 vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point, Board* &gameBoard) const {
     vector<cell_t> possibleMoves;
     vector<point_t> flippingPoints;
@@ -155,7 +157,6 @@ vector<cell_t> RemotePlayer::possibleMovesForOneDisk(char current, point_t point
     }
     return possibleMoves;
 }
-
 
 void RemotePlayer::printMyOptions(Visualization *screen, vector<cell_t> myoptions) const {
     cout << "waiting for the other player move..." << endl;

@@ -1,7 +1,11 @@
-
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #include "../include/GameFlow.h"
-
 
 void GameFlow::run() {
     //as long as the game isnt over, keep switching turns

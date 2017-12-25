@@ -1,3 +1,9 @@
+//
+// Shay Tzirin
+// ID: 315314930
+// Yuval Hoch
+// ID: 204468474
+//
 
 #ifndef REVERSI_CELL_H
 #define REVERSI_CELL_H
