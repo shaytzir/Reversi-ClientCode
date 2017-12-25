@@ -47,7 +47,7 @@ int Client::connectToServer() {
         throw "Error connecting to server";
     }
     //////////////////////////////////////////////////////////////
-    //sendChoice();
+    sendChoice();
     //getMessage();
     //////////////////////////////////////////////////////////////
 
@@ -97,7 +97,10 @@ void Client::sendChoice() {
         cin >> commandChar;
         write(clientSocket, &commandChar, sizeof(commandChar));
         command.append(1u, commandChar);
-        if (commandChar == '>' || strcmp(command.c_str(), "list_games") == 0) {
+        if (commandChar == '>') {
+            break;
+        } else if (strcmp(command.c_str(), "list_games") == 0) {
+            getListOfGames();
             break;
         }
     }
@@ -114,4 +117,17 @@ void Client::getMessage() {
     } else if (messageNum == 2) {
         cout << "You joined to the game.";
     }
+}
+
+void Client::getListOfGames() {
+    char gameNameChar;
+    string commandStr;
+    for (int i = 0; i < 50; i++) {
+        read(this->clientSocket, &gameNameChar, sizeof(gameNameChar));
+        commandStr.append(1u, gameNameChar);
+        if (gameNameChar == '\n') {
+            break;
+        }
+    }
+    cout << commandStr << endl;
 }

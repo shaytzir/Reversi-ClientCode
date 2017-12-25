@@ -46,6 +46,7 @@ private:
     int clientSocket;
     void sendChoice();
     void getMessage();
+    void getListOfGames();
 };
 
 
