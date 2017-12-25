@@ -15,6 +15,7 @@ Client::Client(const char *serverIP, int serverPort):
     ;
 }
 int Client::connectToServer() {
+    int sign;
     // Create a socket point
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
@@ -45,7 +46,11 @@ int Client::connectToServer() {
     *)&serverAddress, sizeof(serverAddress)) == -1) {
         throw "Error connecting to server";
     }
-    int sign;
+    //////////////////////////////////////////////////////////////
+    //sendChoice();
+    //getMessage();
+    //////////////////////////////////////////////////////////////
+
     int n = read(clientSocket, &sign, sizeof(sign));
     if (n == -1) {
         throw "Error reading result from socket";
@@ -83,4 +88,30 @@ string Client::getChoice() {
     choice = userChoice;
     delete[] userChoice;
     return choice;
+}
+
+void Client::sendChoice() {
+    char commandChar;
+    string command;
+    for (int i = 0; i < 50; i++) {
+        cin >> commandChar;
+        write(clientSocket, &commandChar, sizeof(commandChar));
+        command.append(1u, commandChar);
+        if (commandChar == '>' || strcmp(command.c_str(), "list_games") == 0) {
+            break;
+        }
+    }
+}
+
+void Client::getMessage() {
+    int messageNum;
+    int n = read(clientSocket, &messageNum, sizeof(messageNum));
+    if (n == -1) {
+        throw "Error reading result from socket";
+    }
+    if (messageNum == 1) {
+        cout << "New game is available. Wait for another player to connect.";
+    } else if (messageNum == 2) {
+        cout << "You joined to the game.";
+    }
 }

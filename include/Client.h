@@ -41,6 +41,8 @@ private:
     const char *serverIP;
     int serverPort;
     int clientSocket;
+    void sendChoice();
+    void getMessage();
 };
 
 

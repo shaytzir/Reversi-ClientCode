@@ -34,16 +34,18 @@ int main() {
         player2 = new AIPlayer('O');
     } else if (choice == 3) {
         //read client configuration and connect to server
-        ifstream inFile;
+        /*ifstream inFile;
         inFile.open("ClientConfig.txt");
         string ip;
         const char* IP;
         int port;
         inFile >> ip;
-        inFile >> port;
-        IP = ip.c_str();
+        inFile >> port;*/
+        string ip = "127.0.0.1";/////////////////
+        int port = 8000git ;//////////////////
+        const char* IP = ip.c_str();
         try {
-            client =new Client(IP, port);
+            client = new Client(IP, port);
             int sign = client->connectToServer();
             player1 = new LocalPlayer(sign, client);
             player2 = new RemotePlayer(sign, client);
