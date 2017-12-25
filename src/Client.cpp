@@ -9,10 +9,8 @@
 
 using namespace std;
 Client::Client(const char *serverIP, int serverPort):
-        serverIP(serverIP), serverPort(serverPort),
-        clientSocket(0) {
+        serverIP(serverIP), serverPort(serverPort), clientSocket(0) {
     cout << "Client" << endl;
-    ;
 }
 int Client::connectToServer() {
     int sign;
@@ -104,6 +102,13 @@ void Client::sendChoice() {
             break;
         }
     }
+    /*int check;
+    int n = read(clientSocket, &check, sizeof(check));
+    if (check == -1) {
+        cout << "There is already game with this name.\n";
+        close(clientSocket);
+        connectToServer();
+    }*/
 }
 
 void Client::getMessage() {
@@ -122,12 +127,12 @@ void Client::getMessage() {
 void Client::getListOfGames() {
     char gameNameChar;
     string commandStr;
-    for (int i = 0; i < 50; i++) {
+    do {
         read(this->clientSocket, &gameNameChar, sizeof(gameNameChar));
         commandStr.append(1u, gameNameChar);
-        if (gameNameChar == '\n') {
-            break;
-        }
-    }
-    cout << commandStr << endl;
+        //if (gameNameChar == '\n') {
+            //break;
+        ///}
+    }while (gameNameChar != '\n');
+    cout << commandStr;
 }

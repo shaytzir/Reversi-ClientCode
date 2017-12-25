@@ -22,7 +22,7 @@ int main() {
     Client* client;
     GeneralPlayer *player1, *player2;
     Visualization* screen = new Console();
-    int choice;
+    int choice, sign;
     screen->openScreen();
     cin >> choice;
     //create two players
@@ -46,7 +46,9 @@ int main() {
         const char* IP = ip.c_str();
         try {
             client = new Client(IP, port);
-            int sign = client->connectToServer();
+            do {
+                sign = client->connectToServer();
+            }while (sign == -1);
             player1 = new LocalPlayer(sign, client);
             player2 = new RemotePlayer(sign, client);
             if (sign == 2) {
