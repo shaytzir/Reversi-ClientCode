@@ -60,6 +60,13 @@ public:
      * print the last move of the last player
      */
     virtual void printWhichMovePlayed(char player, string move) = 0;
+    /**
+     * this function asks the user to enter a request for the server
+     */
+    virtual void subMenuRemote() = 0;
+
+    virtual string getRequest() = 0;
+    virtual string getInfoForReq(int req) = 0;
 };
 
 #endif //EX2_VISUALIZATION_H

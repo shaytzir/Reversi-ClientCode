@@ -37,6 +37,9 @@ public:
      * 'O' if he is the second player).
      */
     int getSign() const;
+
+    void sendRequest(int option);
+
 private:
     const char *serverIP;
     int serverPort;
