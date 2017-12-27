@@ -20,6 +20,7 @@
 
 int main() {
     Client* client;
+    int option;
     GeneralPlayer *player1, *player2;
     Visualization* screen = new Console();
     int choice;
@@ -34,17 +35,26 @@ int main() {
         player2 = new AIPlayer('O');
     } else if (choice == 3) {
         //read client configuration and connect to server
-        ifstream inFile;
+        /*ifstream inFile;
         inFile.open("ClientConfig.txt");
         string ip;
         const char* IP;
         int port;
         inFile >> ip;
         inFile >> port;
-        IP = ip.c_str();
+        IP = ip.c_str();*/
+        const char* IP = "127.0.0.1";
+        int port = 8000;
         try {
             client =new Client(IP, port);
             int sign = client->connectToServer();
+            screen->subMenuRemote();
+            string req = screen->getRequest();     //maybe shouldnt be handled in screen. i have no idea where
+            //client->sendRequest(req);
+            client->sendMove(req.c_str());
+            /**
+             * need to sent our request to the
+             */
             player1 = new LocalPlayer(sign, client);
             player2 = new RemotePlayer(sign, client);
             if (sign == 2) {

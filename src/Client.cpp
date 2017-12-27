@@ -45,21 +45,33 @@ int Client::connectToServer() {
     *)&serverAddress, sizeof(serverAddress)) == -1) {
         throw "Error connecting to server";
     }
-    int sign;
+
+    /////not here
+
+   /* int sign;
     int n = read(clientSocket, &sign, sizeof(sign));
     if (n == -1) {
         throw "Error reading result from socket";
-    }
+    }*/
     cout << "Connected to server" << endl;
-    return sign;
+   // return sign;
 }
 
 void Client::sendMove(const char* choice) {
+    string choiceToSend = choice;
+    int size= choiceToSend.length();
+    int i = 0;
+    char ch;
+    while (i < size) {
+        ch = choiceToSend.at(i);
+        int n = write(clientSocket, &ch, sizeof(ch));
+        i++;
+    }
     // Write the desired move of the player
-    int n  = write(clientSocket, choice, sizeof(choice));
+   /* int n  = write(clientSocket, choice, sizeof(choice));
     if (n == -1) {
         throw "Error writing op to socket";
-    }
+    }*/
 }
 
 int Client::getSign() const{
@@ -84,3 +96,5 @@ string Client::getChoice() {
     delete[] userChoice;
     return choice;
 }
+
+

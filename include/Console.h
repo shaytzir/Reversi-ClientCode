@@ -53,6 +53,13 @@ public:
     * print the last move of the last player
     */
     virtual void printWhichMovePlayed(char player, string move);
+
+    /**
+     * asks the user to enter a request for server
+     */
+    virtual void subMenuRemote();
+    virtual string getRequest();
+    virtual string getInfoForReq(int req);
 private:
     /**
     * options.
