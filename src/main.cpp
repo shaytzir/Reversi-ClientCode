@@ -40,13 +40,18 @@ int main() {
         inFile >> ip;
         inFile >> port;*/
         string ip = "127.0.0.1";/////////////////
-        int port = 80000;//////////////////
+        int port = 8000;//////////////////
         const char* IP = ip.c_str();
         try {
             client = new Client(IP, port);
             do {
                 sign = client->connectToServer();
             }while (sign == -1);
+            if (sign == 0) {
+                delete screen;
+                delete client;
+                return 0;
+            }
             player1 = new LocalPlayer(sign, client);
             player2 = new RemotePlayer(sign, client);
             if (sign == 2) {

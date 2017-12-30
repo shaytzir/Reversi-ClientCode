@@ -60,7 +60,11 @@ int Client::connectToServer() {
     if (n == -1) {
         throw "Error reading result from socket";
     }
-    cout << "Connected to server" << endl;
+    if (n == 0) {
+        cout << "server is closing..." << endl;
+        return 0;
+    }
+    //cout << "Connected to server" << endl;
     return sign;
 }
 
