@@ -72,12 +72,16 @@ void Client::sendMove(const char* choice) {
     if (n == -1) {
         throw "Error writing op to socket";
     }
+    /*
     read(clientSocket, &check, sizeof(check));
     if (check == -1) {
         screen->printServerClose();
         close(clientSocket);
         signToClose = -1;
         exit(0); ///////////////////////////////////////////////
+=======*/
+    if (n == 0) {
+        throw "Server's closing... shutting game";
     }
 }
 
@@ -99,6 +103,9 @@ string Client::getChoice() {
     int n = read(clientSocket, userChoice, 10);
     if (n == -1) {
         throw "Error of reading from socket";
+    }
+    if (n == 0) {
+        throw "Server's Closing..."; /////////////////check
     }
     string choice;
     choice.clear();

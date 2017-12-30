@@ -67,10 +67,20 @@ int main() {
             exit(-1);
         }
     }
-    //creates new game
-    GameFlow game(player1, player2, screen);
-    //runs the game
-    game.run();
+
+    try {
+        //creates new game
+        GameFlow game(player1, player2, screen);
+        //runs the game
+        game.run();
+    } catch (const char *msg) {
+        screen->printMessage("Server is shutting...");
+        delete player1;
+        delete player2;
+        delete client;
+        delete screen;
+        return 0;
+    }
     delete player1;
     delete player2;
     delete client;
