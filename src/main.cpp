@@ -40,11 +40,13 @@ int main() {
         inFile >> ip;
         inFile >> port;*/
         string ip = "127.0.0.1";/////////////////
-        int port = 8000;//////////////////
+        int port = 8001;//////////////////
         const char* IP = ip.c_str();
+        string listOfGames;
         try {
-            client = new Client(IP, port);
+            client = new Client(IP, port, screen);
             do {
+                screen->subMenuRemote();
                 sign = client->connectToServer();
             }while (sign == -1);
             if (sign == 0) {
@@ -60,7 +62,8 @@ int main() {
                 player2 = temp;
             }
         } catch (const char *msg) {
-            cout << "Failed to connect to server. Reason:" << msg << endl;
+            screen->printMessage("Failed to connect to server. Reason: ");
+            screen->printMessage(msg);
             exit(-1);
         }
     }

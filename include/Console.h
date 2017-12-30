@@ -65,6 +65,8 @@ public:
     virtual void subMenuRemote();
     virtual string getRequest();
     virtual string getInfoForReq(int req);
+    virtual void gameList(string listOfGames);
+    void printMessage(string m);
 private:
     /**
     * options.

@@ -82,10 +82,9 @@ void Console::printWhichMovePlayed(char player, string move) {
 void Console::subMenuRemote() {
     int option;
     cout << "Please Enter Your Request:" << endl;
-    cout << "Enter 1 to start a game" << endl;
-    cout << "Enter 2 to see the list of the games" << endl;
-    cout << "Enter 3 to join a game" << endl;
-    cout << "Enter 4 to close a game" << endl;
+    cout << "start <gameName>" << endl;
+    cout << "join <gameName>" << endl;
+    cout << "list_games" << endl;
 }
 
 string Console::getRequest() {
@@ -118,7 +117,7 @@ string Console::getInfoForReq(int req) {
         name.append(">");
         inputReq.append(name);
     } else if (req == 2) {
-        inputReq.append("list_games");
+        //inputReq.append("list_games");
     } else if (req == 3) {
         cout << "Enter a Name Of A Game To Join: " << endl;
         inputReq.append("join <");
@@ -134,4 +133,12 @@ string Console::getInfoForReq(int req) {
     }
 
     return inputReq;
+}
+
+void Console::gameList(string listOfGames) {
+    cout << "The open games are:\n" << listOfGames << endl;
+}
+
+void Console::printMessage(string m) {
+    cout << m;
 }

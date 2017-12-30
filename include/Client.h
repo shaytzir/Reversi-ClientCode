@@ -17,7 +17,7 @@ public:
      * @param serverIP the IP adress of the client.
      * @param serverPort the connection port.
      */
-    Client(const char *serverIP, int serverPort);
+    Client(const char *serverIP, int serverPort, Visualization *screen);
 
     /**
      * connectToServer.
@@ -45,14 +45,14 @@ public:
     int getSign() const;
 
     void sendRequest(int option);
-
+    void getListOfGames();
 private:
     const char *serverIP;
     int serverPort;
     int clientSocket;
+    Visualization *screen;
     void sendChoice();
     void getMessage();
-    void getListOfGames();
 };
 
 

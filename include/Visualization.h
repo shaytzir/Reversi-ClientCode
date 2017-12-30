@@ -74,6 +74,8 @@ public:
     virtual string getRequest() = 0;
 
     virtual string getInfoForReq(int req) = 0;
+    virtual void gameList(string listOfGames) = 0;
+    virtual void printMessage(string m) = 0;
 };
 
 #endif //EX2_VISUALIZATION_H

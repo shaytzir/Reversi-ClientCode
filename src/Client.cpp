@@ -15,9 +15,10 @@
 #include <unistd.h>
 
 using namespace std;
-Client::Client(const char *serverIP, int serverPort):
+Client::Client(const char *serverIP, int serverPort, Visualization *v):
         serverIP(serverIP), serverPort(serverPort), clientSocket(0) {
-    cout << "Client" << endl;
+    this->screen = v;
+    screen->printMessage("Client");
 }
 int Client::connectToServer() {
     int sign;
@@ -52,6 +53,7 @@ int Client::connectToServer() {
         throw "Error connecting to server";
     }
     //////////////////////////////////////////////////////////////
+
     sendChoice();
     //getMessage();
     //////////////////////////////////////////////////////////////
@@ -61,10 +63,9 @@ int Client::connectToServer() {
         throw "Error reading result from socket";
     }
     if (n == 0) {
-        cout << "server is closing..." << endl;
+        screen->printMessage("server is closing...");
         return 0;
     }
-    //cout << "Connected to server" << endl;
     return sign;
 }
 
@@ -100,18 +101,31 @@ string Client::getChoice() {
 }
 
 void Client::sendChoice() {
-    char commandChar;
-    string command;
-    for (int i = 0; i < 50; i++) {
-        cin >> commandChar;
-        write(clientSocket, &commandChar, sizeof(commandChar));
-        command.append(1u, commandChar);
-        if (commandChar == '>') {
-            break;
-        } else if (strcmp(command.c_str(), "list_games") == 0) {
-            getListOfGames();
-            break;
+    char *commandChar, c;
+    string command, command2;
+    int i;
+    cin >> command;
+    commandChar = new char[command.length() + 1];
+    strcpy(commandChar, command.c_str());
+    if (command == "list_games") {
+        for (i = 0; i < command.length(); i++) {
+            write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
         }
+        getListOfGames();
+    } else {
+        for (i = 0; i < command.length(); i++) {
+            write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+        }
+        cin >> command;
+        commandChar = new char[command.length() + 1];
+        strcpy(commandChar, command.c_str());
+        c = '<';
+        write(clientSocket, &c, sizeof(c));
+        for (i = 0; i < command.length(); i++) {
+            write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+        }
+        c = '>';
+        write(clientSocket, &c, sizeof(c));
     }
 }
 
@@ -122,9 +136,9 @@ void Client::getMessage() {
         throw "Error reading result from socket";
     }
     if (messageNum == 1) {
-        cout << "New game is available. Wait for another player to connect.";
+        screen->printMessage("New game is available. Wait for another player to connect.");
     } else if (messageNum == 2) {
-        cout << "You joined to the game.";
+        screen->printMessage("You joined to the game.");
     }
 }
 
@@ -134,9 +148,6 @@ void Client::getListOfGames() {
     do {
         read(this->clientSocket, &gameNameChar, sizeof(gameNameChar));
         commandStr.append(1u, gameNameChar);
-        //if (gameNameChar == '\n') {
-            //break;
-        ///}
     }while (gameNameChar != '\n');
-    cout << commandStr;
+    this->screen->gameList(commandStr);
 }
