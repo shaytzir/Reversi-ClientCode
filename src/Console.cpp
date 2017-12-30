@@ -142,3 +142,7 @@ void Console::gameList(string listOfGames) {
 void Console::printMessage(string m) {
     cout << m;
 }
+
+void Console::printServerClose() {
+    cout << "Server is closing...";
+}

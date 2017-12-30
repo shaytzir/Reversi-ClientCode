@@ -43,8 +43,6 @@ public:
      * 'O' if he is the second player).
      */
     int getSign() const;
-
-    void sendRequest(int option);
     void getListOfGames();
 private:
     const char *serverIP;
@@ -52,8 +50,7 @@ private:
     int clientSocket;
     Visualization *screen;
     void sendChoice();
-    void getMessage();
+    int signToClose;
 };
-
 
 #endif //EX2_CLIENT_H

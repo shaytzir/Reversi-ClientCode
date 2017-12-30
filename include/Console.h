@@ -67,6 +67,7 @@ public:
     virtual string getInfoForReq(int req);
     virtual void gameList(string listOfGames);
     void printMessage(string m);
+    void printServerClose();
 private:
     /**
     * options.

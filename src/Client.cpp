@@ -13,12 +13,14 @@
 #include <netdb.h>
 #include <string.h>
 #include <unistd.h>
+#include <cstdlib>
 
 using namespace std;
 Client::Client(const char *serverIP, int serverPort, Visualization *v):
         serverIP(serverIP), serverPort(serverPort), clientSocket(0) {
     this->screen = v;
     screen->printMessage("Client");
+    signToClose = 1;
 }
 int Client::connectToServer() {
     int sign;
@@ -52,28 +54,30 @@ int Client::connectToServer() {
     *)&serverAddress, sizeof(serverAddress)) == -1) {
         throw "Error connecting to server";
     }
-    //////////////////////////////////////////////////////////////
-
     sendChoice();
-    //getMessage();
-    //////////////////////////////////////////////////////////////
-
     int n = read(clientSocket, &sign, sizeof(sign));
     if (n == -1) {
         throw "Error reading result from socket";
     }
     if (n == 0) {
-        screen->printMessage("server is closing...");
+        screen->printServerClose();
         return 0;
     }
     return sign;
 }
 
 void Client::sendMove(const char* choice) {
-    // Write the desired move of the player
-    int n  = write(clientSocket, choice, sizeof(choice));
+    int check;
+    int n = write(clientSocket, choice, sizeof(choice));
     if (n == -1) {
         throw "Error writing op to socket";
+    }
+    read(clientSocket, &check, sizeof(check));
+    if (check == -1) {
+        screen->printServerClose();
+        close(clientSocket);
+        signToClose = -1;
+        exit(0); ///////////////////////////////////////////////
     }
 }
 
@@ -88,6 +92,9 @@ int Client::getSign() const{
 
 string Client::getChoice() {
     char *userChoice = new char[10];
+    //if (signToClose == -1) {
+        //return "close";
+    //}
     // read from socket
     int n = read(clientSocket, userChoice, 10);
     if (n == -1) {
@@ -126,19 +133,6 @@ void Client::sendChoice() {
         }
         c = '>';
         write(clientSocket, &c, sizeof(c));
-    }
-}
-
-void Client::getMessage() {
-    int messageNum;
-    int n = read(clientSocket, &messageNum, sizeof(messageNum));
-    if (n == -1) {
-        throw "Error reading result from socket";
-    }
-    if (messageNum == 1) {
-        screen->printMessage("New game is available. Wait for another player to connect.");
-    } else if (messageNum == 2) {
-        screen->printMessage("You joined to the game.");
     }
 }
 
