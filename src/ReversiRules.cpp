@@ -10,7 +10,7 @@
 #include "../include/ReversiRules.h"
 
 ReversiRules::ReversiRules(GeneralPlayer* black, GeneralPlayer* white, Visualization* screen) {
-    this->board_ = new Board(4, 4, black->getSign(), white->getSign());
+    this->board_ = new Board(8, 8, black->getSign(), white->getSign());
     this->whiteP_ = white;
     this->blackP_ = black;
     now_ = blackP_;
@@ -46,12 +46,10 @@ void ReversiRules::nextTurn() {
     } else {
         now_->printMyOptions(this->screen_, this->movesForCurrentPlayer);
         choice = this->now_->getNextMove(this->board_);
-        ///////////////////////////////
         if (choice == "close") {
             this->screen_->printServerClose();
             exit(0);
         }
-        //////////////////////////////
         //if he didnt type a valid choice, make him choose again
         while(!thisIsAOption(choice)) {
             now_->printItsnAOption(this->screen_);
@@ -93,7 +91,6 @@ bool ReversiRules::gameover() {
         if (later_->getMovesForPlayer(this->board_, this->later_->getSign()).size() == 0) {
             return true;
         }
-        // switchPlayers();
     }
     return false;
 }

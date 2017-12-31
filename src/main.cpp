@@ -76,13 +76,8 @@ int main() {
         game.run();
         //catches if the server shuts down
     } catch (const char *msg) {
-        screen->printMessage("Server is shutting...");
+        screen->printMessage("Server is shutting...\n");
         close(client->getSocket());
-        delete player1;
-        delete player2;
-        delete client;
-        delete screen;
-        return 0;
     }
     delete player1;
     delete player2;

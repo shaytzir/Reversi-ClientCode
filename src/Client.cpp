@@ -123,32 +123,53 @@ string Client::getChoice() {
 
 void Client::sendChoice() {
     char *commandChar, c;
-    string command, command2;
+    string command;
     int i;
-    cin >> command;
-    commandChar = new char[command.length() + 1];
-    strcpy(commandChar, command.c_str());
-    if (command == "list_games") {
-        for (i = 0; i < command.length(); i++) {
-            write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
-        }
-        getListOfGames();
-    } else {
-        for (i = 0; i < command.length(); i++) {
-            write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
-        }
+
+
+    while(true) {
         cin >> command;
+
         commandChar = new char[command.length() + 1];
         strcpy(commandChar, command.c_str());
-        c = '<';
-        write(clientSocket, &c, sizeof(c));
-        for (i = 0; i < command.length(); i++) {
-            write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+        if (command == "list_games") {
+            for (i = 0; i < command.length(); i++) {
+                write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+            }
+            getListOfGames();
+            return;
+        } else if ((strcmp(command.c_str(), "start") ==0 ) || (strcmp(command.c_str(), "join") == 0)) {
+            for (i = 0; i < command.length(); i++) {
+                write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+            }
+            cin >> command;
+            commandChar = new char[command.length() + 1];
+            strcpy(commandChar, command.c_str());
+            c = '<';
+            write(clientSocket, &c, sizeof(c));
+            for (i = 0; i < command.length(); i++) {
+                write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+            }
+            c = '>';
+            write(clientSocket, &c, sizeof(c));
+            char gameNameChar;
+            string commandStr;
+            //reads the list char by char, and sends it to the screen to present
+            do {
+                read(this->clientSocket, &gameNameChar, sizeof(gameNameChar));
+                commandStr.append(1u, gameNameChar);
+            } while (gameNameChar != '\n');
+            this->screen->printMessage(commandStr);
+            return;
         }
-        c = '>';
-        write(clientSocket, &c, sizeof(c));
+        screen->printMessage("INVALID INPUT. ENTER YOUR CHOICE AGAIN:\n");
+        command.clear();
     }
+
+
+
 }
+
 
 void Client::getListOfGames() {
     char gameNameChar;
@@ -158,6 +179,7 @@ void Client::getListOfGames() {
         read(this->clientSocket, &gameNameChar, sizeof(gameNameChar));
         commandStr.append(1u, gameNameChar);
     }while (gameNameChar != '\n');
+    commandStr.append(1u, '\n');
     this->screen->gameList(commandStr);
 }
 
