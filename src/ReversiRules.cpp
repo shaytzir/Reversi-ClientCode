@@ -74,7 +74,8 @@ void ReversiRules::nextTurn() {
 
 bool ReversiRules::thisIsAOption(string choice) {
     for(int i = 0; i < this->movesForCurrentPlayer.size(); i++) {
-        if(choice[0] -'0' - 1 == this->movesForCurrentPlayer[i].x && choice[2] -'0' - 1 == this->movesForCurrentPlayer[i].y) {
+        if(choice[0] -'0' - 1 == this->movesForCurrentPlayer[i].x
+           && choice[2] -'0' - 1 == this->movesForCurrentPlayer[i].y) {
             return true;
         }
     }

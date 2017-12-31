@@ -98,13 +98,7 @@ int Client::getSign() const{
 }
 
 string Client::getChoice() {
-
     char *userChoice = new char[10];
-    //if (signToClose == -1) {
-        //return "close";
-    //}
-    // read from socket
-
     //client is trying to read the remote player move
     int n = read(clientSocket, userChoice, 10);
     if (n == -1) {
@@ -112,7 +106,7 @@ string Client::getChoice() {
     }
     //if n=0 the server isnt active anymore
     if (n == 0) {
-        throw "Server's Closing..."; /////////////////check
+        throw "Server's Closing...";
     }
     string choice;
     choice.clear();
@@ -125,26 +119,27 @@ void Client::sendChoice() {
     char *commandChar, c;
     string command;
     int i;
-
-
     while(true) {
         cin >> command;
-
         commandChar = new char[command.length() + 1];
         strcpy(commandChar, command.c_str());
+        //If the client wants to get the games list, send the request and return.
         if (command == "list_games") {
             for (i = 0; i < command.length(); i++) {
                 write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
             }
+            //Get the list from the server.
             getListOfGames();
             return;
         } else if ((strcmp(command.c_str(), "start") ==0 ) || (strcmp(command.c_str(), "join") == 0)) {
+            //If the client wnts to start a new game or join to one, he need to input also the name of the game.
             for (i = 0; i < command.length(); i++) {
                 write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
             }
             cin >> command;
             commandChar = new char[command.length() + 1];
             strcpy(commandChar, command.c_str());
+            //Sent the command in a way of "command <game_name>".
             c = '<';
             write(clientSocket, &c, sizeof(c));
             for (i = 0; i < command.length(); i++) {
@@ -162,14 +157,11 @@ void Client::sendChoice() {
             this->screen->printMessage(commandStr);
             return;
         }
+        //If the client input is'nt from the 3 option, ask to input the choice again.
         screen->printMessage("INVALID INPUT. ENTER YOUR CHOICE AGAIN:\n");
         command.clear();
     }
-
-
-
 }
-
 
 void Client::getListOfGames() {
     char gameNameChar;

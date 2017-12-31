@@ -70,12 +70,20 @@ public:
      * this function asks the user to enter a request for the server
      */
     virtual void subMenuRemote() = 0;
-
-    virtual string getRequest() = 0;
-
-    virtual string getInfoForReq(int req) = 0;
+    /**
+    *gameList.
+    * @param listOfGames to printout.
+    */
     virtual void gameList(string listOfGames) = 0;
+    /**
+    *printMessage.
+    * @param m the message to printout.
+    */
     virtual void printMessage(string m) = 0;
+    /**
+    *printServerClose.
+    * Printout that the server is close.
+    */
     virtual void printServerClose() = 0;
 };
 

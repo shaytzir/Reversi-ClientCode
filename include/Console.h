@@ -60,13 +60,24 @@ public:
     virtual void printWhichMovePlayed(char player, string move);
 
     /**
+     * subMenuRemote.
      * asks the user to enter a request for server
      */
     virtual void subMenuRemote();
-    virtual string getRequest();
-    virtual string getInfoForReq(int req);
+    /**
+     *gameList.
+     * @param listOfGames to printout.
+     */
     virtual void gameList(string listOfGames);
+    /**
+     *printMessage.
+     * @param m the message to printout.
+     */
     void printMessage(string m);
+    /**
+     *printServerClose.
+     * Printout that the server is close.
+     */
     void printServerClose();
 private:
     /**

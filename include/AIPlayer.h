@@ -56,7 +56,6 @@ public:
      */
     void passTurn();
 
-
     /**
      * print there no moves for current player.
      */

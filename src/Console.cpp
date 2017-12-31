@@ -76,64 +76,15 @@ void Console::openScreen() {
 void Console::printWhichMovePlayed(char player, string move) {
     cout <<endl;
     cout << "Player " << player << " played " << move << endl;
-
 }
 
 void Console::subMenuRemote() {
-    int option;
     cout << "Please Enter Your Request:" << endl;
     cout << "start <gameName>" << endl;
     cout << "join <gameName>" << endl;
     cout << "list_games" << endl;
 }
 
-string Console::getRequest() {
-    int request;
-    bool valid = false;
-    while (!valid) {
-        cin >> request;
-        // for bad option
-        for (int i = 1; i <=4; i++) {
-            if (i == request) {
-                valid = true;
-            }
-        }
-        if (!valid) {
-            cout << "Invalid Option. Please Enter Again:" << endl;
-            cin.clear();
-        }
-    }
-    string info = getInfoForReq(request);
-    return info;
-}
-
-string Console::getInfoForReq(int req) {
-    string inputReq = "";
-    string name;
-    if (req == 1) {
-        cout << "Enter Your New Game's Name: " << endl;
-        inputReq.append("start <");
-        cin >> name;
-        name.append(">");
-        inputReq.append(name);
-    } else if (req == 2) {
-        //inputReq.append("list_games");
-    } else if (req == 3) {
-        cout << "Enter a Name Of A Game To Join: " << endl;
-        inputReq.append("join <");
-        cin >> name;
-        name.append(">");
-        inputReq.append(name);
-    } else if (req == 4) {
-        cout << "Enter a Name Of A Game To Close: " << endl;
-        inputReq.append("close <");
-        cin >> name;
-        name.append(">");
-        inputReq.append(name);
-    }
-
-    return inputReq;
-}
 
 void Console::gameList(string listOfGames) {
     cout << "The open games are:\n" << listOfGames << endl;

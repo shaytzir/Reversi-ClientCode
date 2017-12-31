@@ -48,6 +48,10 @@ public:
      * 'O' if he is the second player).
      */
     int getSign() const;
+    /**
+     * getListOfGames.
+     * Get the list of the current open games that the client get join them.
+     */
     void getListOfGames();
 private:
     const char *serverIP;

@@ -9,14 +9,11 @@
 #define EX2_BOARD_H
 
 #include <string>
-
-
 using namespace std;
 
 class Board {
 public:
     /**
-<<<<<<< HEAD
     * constructor.
     * @param wid width of table.
     * @param len length of table.
