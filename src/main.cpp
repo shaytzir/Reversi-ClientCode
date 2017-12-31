@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <fstream>
+#include <unistd.h>
 #include "../include/GeneralPlayer.h"
 #include "../include/HumanP.h"
 #include "../include/AIPlayer.h"
@@ -73,8 +74,10 @@ int main() {
         GameFlow game(player1, player2, screen);
         //runs the game
         game.run();
+        //catches if the server shuts down
     } catch (const char *msg) {
         screen->printMessage("Server is shutting...");
+        close(client->getSocket());
         delete player1;
         delete player2;
         delete client;

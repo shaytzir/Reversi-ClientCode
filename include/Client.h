@@ -26,6 +26,11 @@ public:
     int connectToServer();
 
     /**
+     *
+     * @return the socket of the client
+     */
+    int getSocket();
+    /**
      * sendMove.
      * @param choice send the choice to the server.
      */
