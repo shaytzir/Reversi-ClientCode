@@ -67,20 +67,11 @@ int Client::connectToServer() {
 }
 
 void Client::sendMove(const char* choice) {
-    int check;
     //clients try to send his next move to the server
     int n = write(clientSocket, choice, sizeof(choice));
     if (n == -1) {
         throw "Error writing op to socket";
     }
-    /*
-    read(clientSocket, &check, sizeof(check));
-    if (check == -1) {
-        screen->printServerClose();
-        close(clientSocket);
-        signToClose = -1;
-        exit(0); ///////////////////////////////////////////////
-=======*/
     //if n= 0 the server isnt active anymore
     if (n == 0) {
         throw "Server's closing... shutting game";
@@ -130,6 +121,7 @@ void Client::sendChoice() {
             }
             //Get the list from the server.
             getListOfGames();
+            delete[] commandChar;
             return;
         } else if ((strcmp(command.c_str(), "start") ==0 ) || (strcmp(command.c_str(), "join") == 0)) {
             //If the client wnts to start a new game or join to one, he need to input also the name of the game.
@@ -155,6 +147,7 @@ void Client::sendChoice() {
                 commandStr.append(1u, gameNameChar);
             } while (gameNameChar != '\n');
             this->screen->printMessage(commandStr);
+            delete[] commandChar;
             return;
         }
         //If the client input is'nt from the 3 option, ask to input the choice again.

@@ -33,15 +33,13 @@ int main() {
         player2 = new AIPlayer('O');
     } else if (choice == 3) {
         //read client configuration and connect to server
-        /*ifstream inFile;
+        ifstream inFile;
         inFile.open("ClientConfig.txt");
         string ip;
-        const char* IP;
+        //const char* IP;
         int port;
         inFile >> ip;
-        inFile >> port;*/
-        string ip = "127.0.0.1";/////////////////
-        int port = 8000;//////////////////
+        inFile >> port;
         const char* IP = ip.c_str();
         string listOfGames;
         try {
