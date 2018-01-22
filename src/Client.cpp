@@ -109,7 +109,7 @@ string Client::getChoice() {
 void Client::sendChoice() {
     char *commandChar, c;
     string command;
-    int i;
+    int i,n;
     while(true) {
         cin >> command;
         commandChar = new char[command.length() + 1];
@@ -117,7 +117,10 @@ void Client::sendChoice() {
         //If the client wants to get the games list, send the request and return.
         if (command == "list_games") {
             for (i = 0; i < command.length(); i++) {
-                write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+                n = write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+                if (n== -1) {
+                    throw "Server's Closing...";
+                }
             }
             //Get the list from the server.
             getListOfGames();
@@ -126,7 +129,10 @@ void Client::sendChoice() {
         } else if ((strcmp(command.c_str(), "start") ==0 ) || (strcmp(command.c_str(), "join") == 0)) {
             //If the client wnts to start a new game or join to one, he need to input also the name of the game.
             for (i = 0; i < command.length(); i++) {
-                write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+                n = write(clientSocket, &commandChar[i], sizeof(commandChar[i]));
+                if (n== -1) {
+                    throw "Server's Closing...";
+                }
             }
             cin >> command;
             commandChar = new char[command.length() + 1];
