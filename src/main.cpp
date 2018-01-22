@@ -38,10 +38,8 @@ int main() {
         string ip;
         //const char* IP;
         int port;
-        //inFile >> ip;
-        //inFile >> port;
-        port = 8000;
-        ip ="127.0.0.1";
+        inFile >> ip;
+        inFile >> port;
         const char* IP = ip.c_str();
         string listOfGames;
         try {
@@ -63,7 +61,6 @@ int main() {
                 player2 = temp;
             }
         } catch (const char *msg) {
-            screen->printMessage("Failed to connect to server. Reason: ");
             screen->printMessage(msg);
             delete client;
             exit(-1);
